@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>More Forms</title>
+</head>
+<body>
+    <!-- Checkbox: several choices to pick -->
+    <!-- Radio: Only one choice allowed e.g male/female -->
+    
+    <!-- <form action="http://wikipedia.org"> -->
+    <form>
+        <p>Do you prefer cats or dogs?</p>
+        <label for="cats">Cats:</label>
+        <input name="petChoice" id="cats" type="radio" value="CATS">
+        <label for="dogs">Dogs:</label>
+        <input name="petChoice" id="dogs" type="radio" value="DOGS" required>
+        <!-- 
+            name, value ==> data sent as option selected
+            label: for and input: id ==> tells browser which input the label belongs to, lumps them together for screenreader 
+         -->
+        <!-- store DOGS as value under petChoice -->
+        
+    <br>
+    <p>What's your favorite color:</p>
+    <select name="color" id="">
+    <option value="RED">Red</option>
+    <option value="GREEN">GREEN</option>
+    <option value="BLUE">BLUE</option>
+    </select>
+
+    <br> <br>
+    <p>Tell us a little about yourself.</p>
+    <textarea name="bioParagraph" id="" cols="50" rows="10"></textarea>
+    <br> <br>
+
+    <!-- If button is at the end of the form, it is automatically submit -->
+    <button>Go!</button>
+    
+    </form>
+
+    <br> <br>
+    <input type="checkbox">
+
+
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Forms</title>
+</head>
+
+<body>
+    <h1>Login</h1>
+    <!-- <form action="http://bible.com" method="GET"> -->
+    <form>
+        <!-- action: where form gets data -->
+        <!-- method: what HTTP method: get/post -->
+        <!-- In GET requests, the name attribute is sent with the form data
+    it shows on URL of page once you click submit -->
+        <!-- Form is block level tag -->
+
+        <input name="username" type="text" placeholder="username">
+        <input name="password" type="password" placeholder="password">
+        <input type="submit">
+
+    </form>
+
+    <br><br><br>
+    <!-- Labels Nested -->
+    <form action="">
+        <label>
+                Username
+            <input name="username" type="text" placeholder="username">
+        </label>
+        <br>
+        <label >
+            Password
+            <input name="password" type="password" placeholder="password">
+        </label>
+        <input type="submit">
+    </form>
+
+    <br><br><br>
+
+        <!-- Labels More elegant -->
+        <!-- With Presence Validation -->
+        <p>
+            Form with Presence Validation
+        </p>
+    <form action="http://wikipedia.org">
+        <!-- connect label and input -->
+        <label for="username">Username</label> 
+        <input id="username" type="text" placeholder="username" required>
+        
+        <label for="password">Password</label> 
+        <input id="password" type="password" placeholder="password" required>
+        <br>
+        <label for="email">Email address</label> 
+        <input id="password" type="email" placeholder="email" required>
+        <br>
+        <input type="submit">
+        
+    </form>
+
+</body>
+
+</html>

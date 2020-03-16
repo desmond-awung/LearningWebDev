@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Register</h1>
+
+    <form action="">
+        <div>
+            <label for="FirstName">First Name</label>
+            <input name="fname" id="FirstName" type="text" placeholder="First Name"  required>
+    
+            <label for="LastName">Last Name</label>
+            <input name="lname" id="LastName" type="text" placeholder="Last Name"  required>
+        </div>
+
+        <div>
+            <label for="Male">Male:</label>
+            <input name="gender" id="Male" type="radio" value="MALE" >
+            <label for="Female">Female:</label>
+            <input name="gender" id="Female" type="radio" value="FEMALE" >
+        </div>
+
+        <div>
+            <!-- we could have instead nested input into the label, save the "for" in label and "id" in input -->
+            <label for="emailAddr">Email:</label>
+            <input type="email" name="email1" id="emailAddr" required>
+    
+            <label for="password1">Password: </label>
+            <input type="password" name="password1" id="password1" pattern= ".{8,10}" title="Password must be between 8 and 10 characters"   required>
+            <!-- <input type="password" name="password1" id="password1" minlength="8" maxlength="10" required> -->
+        </div>
+
+        <div>
+            <label for=""> Birthday:
+                <select name="month" id="">
+                    <option value="" disabled selected>Month</option>
+                    <option value="JAN">January</option>
+                    <option value="FEB">February</option>
+                    <option value="MAR">March</option>
+                    <option value="APR">April</option>
+                </select>
+                
+                <select name="day" id="">
+                    <option value="" disabled selected>Day</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+        
+                <select name="year" id="">
+                    <option value="" disabled selected>Year</option> 
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+        
+                </select>
+            </label>
+        </div>
+
+        <div>
+            <label for=""> I agree to the terms and conditions:
+                <input type="checkbox" name="Agree" id="">
+            </label>
+        </div>
+       
+        <div>
+            <input type="submit"> 
+        </div>       
+    </form>
+    
+</body>
+</html>
