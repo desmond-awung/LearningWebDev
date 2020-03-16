@@ -1,0 +1,32 @@
+/* h1 {
+    color: green;
+}
+
+h4 {
+    color: brown;
+}
+
+li {
+    color: blue;
+} */
+/* use color picker 
+white: 255, 255, 255
+black: 00, 00, 00
+
+RGBA - RGB alpha - the best!
+alpha: transparency factor: 1 - opaque; 0.1: almost invisible
+
+*/
+
+h1 {
+    color: rgba(0,200,20, 1);
+}
+
+h4 {
+    color: rgba(0,200,20, .5);
+}
+
+li {
+    color: rgba(0, 200, 20, .2)
+}
+

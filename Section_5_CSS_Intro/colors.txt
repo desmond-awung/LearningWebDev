@@ -1,0 +1,4 @@
+colors:
+#RRGGBB
+
+first 2: shade of red

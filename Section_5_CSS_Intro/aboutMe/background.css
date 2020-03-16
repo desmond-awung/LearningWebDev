@@ -1,0 +1,24 @@
+h1 {
+    color: rgba(20, 200, 20, .8);
+    /* All 3 border params must be present for anything to show on web page */
+    /* border-color: purple;
+    border-width: 5px;
+    border-style: solid; */
+    /* Shortcut to 3 lines above: order doesn't matter? */
+    border: purple solid 5px;
+    /* dashed - old */
+
+}
+
+h4 {
+    background: rgba(0, 200, 200, .5);
+    color: rgba(200, 20, 20, .8)
+}
+
+body { 
+    background: pink;
+    /* To specify bkgnd as image: be careful: it might get tiled */
+    /* background: url(https://image.shutterstock.com/image-photo/wooden-texture-wood-grain-260nw-263029367.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
