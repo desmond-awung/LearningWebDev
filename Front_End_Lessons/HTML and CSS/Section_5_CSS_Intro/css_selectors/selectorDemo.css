@@ -1,0 +1,54 @@
+/* More selectors main selectors:
+http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+
+}
+ /* star: selects element in the html*/
+* {
+    border: 1px grey solid;
+}
+ 
+/* Second tag is the one we are interested in. First selector helps us narrow it down  */
+/* Descendants - nested */
+/* Affects only anchor tags in an <li> tag */
+li a { 
+    color: turquoise;
+}
+
+/* Adjacent */
+/* All ul adjacent to h4: not inside the h4; just those as siblings at the same level as an h4 */
+
+h4 + ul {   /*try ul + h4 to see what you get*/
+    border: 4px blue solid;
+}
+
+/* Attribute selector:  
+ Really great when selecting specific input tags 
+all checkboxes: 
+input[type="checkboxes"] 
+ imgs, anchor <a>, specific inputs,   */
+a[href="http://www.google.com"] {
+    background: yellow; 
+}
+/*Only specific hrefs are selected, unlike
+a {
+    background: yellow; 
+}
+which selects _ALL_ hrefs
+*/
+
+/* nth of type 
+e.g selects the nth in a given group for every group, not every thiird one in a series! */
+li:nth-of-type(3) {
+    background: rgb(163, 52, 163);
+}
+
+ul:nth-of-type(odd) { /*every odd one;  */
+    background: green; 
+}
+
+
+
+
+
+
+

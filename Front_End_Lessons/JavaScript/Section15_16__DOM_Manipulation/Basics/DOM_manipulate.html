@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulating</title>
+
+    <style type="text/css">
+        /* All our JS does is it turns on and off a specific part of our CSS */
+        /* In console:
+     select a paragraph
+     manipulate using: 
+     p1.classList.add("big") or remove or even better: toggle
+     */
+        .big {
+            font-size: 40px;
+            color: orange;
+            border: 5px solid red;
+        }
+
+        .small {
+            font-size: 10px;
+            color: green;
+            border: 1px dashed silver;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>My DOM Demo</h1>
+    <!-- <p> We will work on changing body background color periodically. </p> -->
+
+    <!-- using textContent in JS: for <p> tag, retrieves all the text inside it, including text in the <strong> tag  
+        It's a little dangerous as it overrides all the html elements (e.g. <strong> elts in this case) in the element you select -->
+    <!-- So we use textContent only -->
+    <!-- innerhtml renders inputs as html, but textContent sees everything as just text. Not rendering of tags on page -->
+    <a href="https://www.netflix.com">Link to Netflix</a>
+    <p> Beaches are the <strong>best</strong> places to relax in the world </p>
+    <ul>
+        <li>South Padre Beach</li>
+        <li>Port Aransas Beach</li>
+        <li>Galveston Beach</li>
+    </ul>
+    <img src="https://images.unsplash.com/photo-1495954484750-af469f2f9be5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+        alt="" style="width: 50%">
+    <!-- Photo by Khachik Simonian on Unsplash -->
+    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+        alt="">
+
+<!-- say a1 = document.querySelector("h1")
+    a1.textcontent()
+    a1.innerHTML()
+        a1.getAttribute() -->
+<!--    a1.setAttribute(,) -->
+<!-- the following are good ONLY for debugging - not app code (keep this CSS):
+    - a1.style.color()
+    - a1.style.border()
+    Instead activate CSS classes as follows:
+    a1.classList.toggle("className")   --- note: no dot informt: works only with classes
+    a1.classList.add
+    a1.classList.remove
+    ********
+    -> To check if a1 or whatever element has a class use:
+    a1.classList.contains("className")     -- returns true or false
+    **
+    -> To replace a class in the classList:
+    a1.classList.replace("oldClass", "newClass")
+      -->
+<!-- document. -->
+
+    <!-- Putting the script down here means it runs after html content has loaded -->
+    <!-- <script type="text/javascript" src="dom???.js"></script> -->
+
+
+</body>
+
+</html>

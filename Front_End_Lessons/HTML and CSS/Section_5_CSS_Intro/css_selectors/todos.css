@@ -1,0 +1,45 @@
+/* Three main selectors:
+- Elemet,
+- ID,
+- Class
+
+selector {
+    property: value;
+}
+
+---> element: all instanceos this element in html file will have the css properties in this selector. 
+li {
+}
+
+---> id : an id can only appear once in an HTML page 
+ #idName {
+ }
+
+---> class: can be applied to any number of elements on a page
+.className {
+}
+
+multiple selctors with the same style declarations: commas
+h1, li {
+    color: red
+}
+ */
+
+ 
+
+
+ h1, h2 { /* element */
+     color: rgba(10, 200, 200, .8);
+ }
+
+ li { /* element */
+     border: red 2px solid;
+ }
+
+ #lastItem { /* id */
+     background: yellow;
+ }
+
+ .completed { /* class */
+     text-decoration: line-through;
+ }

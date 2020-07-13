@@ -1,0 +1,109 @@
+/* Organize code according to specificity */
+/* ********* Keep related selectors (hover, focus) together ********* */
+
+/* ********* First start with element tags ********* */
+
+body {
+    /* background-color: paleturquoise; */
+    margin: 0; /*eliminates default margin on left and right sides*/
+    font-family: 'Roboto', sans-serif;
+
+    background: #DAD299;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #B0DAB9, #DAD299);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* ********* Next: class selectors *********  */
+
+/* font awesome plus sign */
+.fa-plus {
+    float: right;
+}
+
+.deleteTask {
+    background-color: #e74c3c;
+    color: white;
+    text-align: center;
+    margin-right: 20px;
+    height: 40px;
+    width: 0px;
+    display: inline-block;
+    transition: 0.2s linear;
+    opacity: 0;
+}
+/* modifies style for .deleteTask above */
+/* when we hover over an li, we select the 'deleteTask' class in it  */
+#container li:hover .deleteTask {
+    width: 40px;
+    opacity: 1;
+}
+
+.taskCompleted {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+
+/* ********* Next id selectors ********* */
+
+#container {
+    width: 360px;
+    margin: 100px auto; /*this centers the container along horiz axis. Nice!*/
+    /* border: 2px solid grey; */ /*no border!!*/
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+
+}
+
+/* ********* Next more specific selectors ********* */
+
+
+#container h1 {
+    background-color: #2980b9;
+    color: white;
+    margin: 0;
+    padding: 10px 20px; /*10px top and bottom; 2px lt and rt*/
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: normal; /*I like this kinfd of h1. Hmm*/
+}
+
+#container ul {
+    list-style: none;   /*default is disc*/
+    margin: 0;
+    padding-left: 0;
+}
+
+#container li {
+    background-color: white;
+    height: 40px;
+    line-height: 40px; /*So li text takes up entire text. Genius */
+    color: #666;
+}
+
+#container,
+#container input,
+/*add styles to every other li*/
+#container li:nth-child(2n) {
+    background-color: #f7f7f7;
+}
+
+#container input {
+    font-size: 18px;
+
+    /* Weird: Colt has a border problem and uses this to fix it: this actuall bulges out this input box: 3px all around*/
+    /* border: 3px solid rgba(0, 0, 0, 0); */
+    /* I don't see this border problem and the line below works for me */
+    border: none;
+
+    width: 100%;    /*goes all across the parent's width: careful: it's just the content that is 100%. does not include padding, margin, etc*/
+    /* box-sizing to the rescue: note: default css is content-box */
+    box-sizing: border-box;
+    padding: 13px 13px 13px 20px;
+    color: #2980b9;
+}
+
+#container input:focus {
+    background-color: #fff;
+    border: 2px solid #2980b9;
+    outline: none;  /*removes default *annoying* blue box from browser :) */
+
+}

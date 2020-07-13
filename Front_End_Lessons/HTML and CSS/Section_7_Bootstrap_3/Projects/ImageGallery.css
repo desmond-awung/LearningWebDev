@@ -1,0 +1,35 @@
+/* .imagebox {
+    background: skyblue;
+    border: solid grey 2px;
+} */
+
+body {
+    /* This is important to avoid fixed-to-top navbars from overlaying on body content */
+    padding-top: 70px;
+}
+
+.navbar {
+    background: #2c3e50;
+}
+
+/* color: #; */
+
+.jumbotron {
+    color: #2c3e50;
+    background: #ecf0f1;
+}
+
+/* battle for specificity */
+/* inspect the elements you want to change and increase the specificity, so it overrides bootstrap's style */
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-brand {
+    /* How do we change yext color? */
+    color: white;
+}
+
+/* This is supposed to fix whitespace issue when images are of different heights */
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Image Galley project with nav bar using bootstrap -->
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="ImageGallery.css" type="text/css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!-- navbar-inverse sets the navbar color to dark, and the text is light -->
+
+        <!-- Place container _inside_ top-most nav element 
+            So we do not constrict navbar itself but instead contents inside of it-->
+        <div class="container">
+            <!-- First part of nav bar: Brand -->
+            <div class="navbar-header">
+                <!-- For hamburger effect, paste it before brand <a> tag, like in example code -->
+                <!-- data-target is the id of the content that hides when we hit mobile width  -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-demo-navbar1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Make sure _only_ brand is in div with class navbar-header -->
+
+                <a href="#" class="navbar-brand"> <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                    Together for Change</a>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="bs-demo-navbar1">
+                <!-- to hide all the content wrapped in this when we hit mobile width-->
+                <!-- Second part of nav bar:  each item in navbar is <li> tag-->
+                <div class="nav navbar-nav">
+                    <li> <a href="#"> About</a></li>
+                    <li> <a href="#"> Contact</a></li>
+                </div>
+
+                <!-- Right side of nav bar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <a href="#">Sign up Now</a></li>
+                    <li> <a href="#">Log in</a></li>
+                </ul>
+            </div>
+            <!-- navbar-header -->
+
+        </div>
+        <!-- container -->
+
+    </nav>
+    <!-- end of navbar code -->
+
+    <div class="container">
+        <div class="jumbotron">
+            <!-- font awesome is pretty cool -->
+            <h1> <i class="fas fa-fist-raised"></i> Protesting for Justice</h1>
+            <p>People of all races standing up for justice.</p>
+            <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6 imagebox">
+                <div class="thumbnail">
+                    <!-- Thumbnail is pretty cool. No need for padding/margin between images (if they are all the same sixe :) wow!!!-->
+                    <img src="https://images.unsplash.com/photo-1591416484573-dcfee73d0ca2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                        alt="img1">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 imagebox">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1591451995744-f750e44c2b6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                        alt="img1">
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 imagebox">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1591451994668-d60e30bc6c59?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                        alt="img1">
+                </div>
+
+            </div>
+        <!-- </div> end of row 1 -->
+
+        <!-- <div class="row"> -->
+        <!-- No need to add a row for every 3 images. It automatically wraps to next line. slick -->
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <!-- Thumbnail is pretty cool. No need for padding/margin between images! wow!!!-->
+                <img src="https://images.unsplash.com/photo-1591379501352-6f82eb4fd94b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <img src="https://images.unsplash.com/photo-1591286137319-7d628a082387?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <img src="https://images.unsplash.com/photo-1591333900289-d2b33dd0d3df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div>
+        <!-- </div> end of row 2 -->
+
+        <!-- <div class="row"> -->
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <!-- Thumbnail is pretty cool. No need for padding/margin between images (if they all have same height)! wow!!!-->
+                <img src="https://images.unsplash.com/photo-1591281866515-fbe57a541bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <img src="https://images.unsplash.com/photo-1591281711819-f0edb1568b74?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div>
+        
+        <div class="col-md-4 col-sm-6 imagebox">
+            <div class="thumbnail">
+                <img src="https://images.unsplash.com/photo-1591451994801-f211651c25e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
+                    alt="img1">
+            </div>
+        </div> <!-- end of row.-->
+
+    </div>
+    <!-- end of container -->
+
+
+    <!-- Jquery is needed for bootstrap JS. Has to come before JS link below -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,56 @@
+body {
+  background: #f5d9d5 !important;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+}
+
+/* .navbar-brand.text-white:hover { */
+#navbarBrand,
+#topNavBar .nav-link:hover,
+#headingGroup span, 
+#text_section_title{
+  color: #ea1c2c !important;
+}
+
+#topNavBar .navbar-brand,
+#topNavBar .nav-link {
+  font-size: 2rem !important;
+}
+
+#text_section_title
+{
+    font-weight: 100;
+}
+#headingGroup h1
+{
+  font-weight: 100;
+  font-size: 3.5rem;
+}
+
+@media (max-width: 1200px) {
+    #headingGroup h1 {
+      font-size: 3rem;
+  }
+}
+
+.text_section_title {
+  font-size: 2rem;
+  color: #ea1c2c;
+}
+
+.text-section-lorem {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: rgba(134, 61, 134, 0.5);
+}
+
+/* i {
+  font-size: 3em;
+  color: rgba(255, 0, 0, 0.4);
+} */
+
+/* we call this class scrolled */
+.navbar.scrolled {
+    background: rgb(222, 192, 222) !important;
+    transition: background 500ms;
+}

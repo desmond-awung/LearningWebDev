@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>jQuery Demo</title>
+
+    <!-- To check if jQuery is correctly installed, type either of these in the console, and make sure it throws no errors (both give the same output)
+    $
+    jQuery
+     -->
+
+    <!-- Linking to the jQuery file locally : faster-->
+    <!-- <script type="text/javascript" src="lib/jquery-3.5.1.js"></script> -->
+    <!-- minified file: faster to load -->
+    <script type="text/javascript" src="lib/jquery-3.5.1.min.js"></script>
+
+    <!-- linking via CDN -  a little slower -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>      -->
+
+</head>
+<body>
+    <h1>jQuery Demo</h1>
+
+    <ul>
+        <li>Lakers</li>
+        <li>Milwaukee Bucks</li>
+        <li>Houston Rockets <a href="http://rockets.com"> Rockets Website </a> </li>
+        <li id="champions">Toronto Raptors</li>
+    </ul>
+    
+    <!-- With jQuery we select elements just as we do with document.querySelectorAll() in vanilla js  -->
+        <!-- For example: select h1:
+            $("h1") 
+            Selects all h1 on the page 
+        Select an id or class on a page:
+            $("#idSelected") 
+            $(".classSelected") -->
+    <!-- Manipulate -->
+        <!-- Now to apply css to the element selected: two ways (note: we can't apply jQuery to $("h1")[0] ) -->
+        <!-- First directly -->
+            <!-- $("h1").css("background-color", "yellow") -->
+        <!-- Second way - (a) through an object: as many styles can be applied in this case: -->
+        <!-- 
+            style1 = {
+                color: "red",
+                backgroundColor: "yellow",
+                border: "2px dashed pink"
+            }
+            // No need to loop through all 'li's as in vanilla js
+            $("li").css(style1) -->
+
+        <!-- Second way - (b) through an object inline:
+            $("h1").css({
+                fontSize: "50px",
+                border: "3px solid blue",
+                backgroundColor: "rgb(188, 211, 50 )"
+            })
+         -->
+</body>
+</html>

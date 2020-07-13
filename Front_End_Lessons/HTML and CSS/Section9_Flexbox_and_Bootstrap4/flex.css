@@ -1,0 +1,91 @@
+/* Responsive! /nice.
+Include containers 1 and 2 in media query so that at 768px, all cols are stacked on each other, just like in Bootstrap  */
+@media (min-width: 768px) {
+  .container-1 {
+    display: flex;
+    align-items: stretch;
+    /* 
+        align-items
+            align-items: stretch; by default
+            align-items: center; min box height, vertically centered
+            align-items: flex-start; min box height, box is at top of row 
+            align-items: flex-end; min box height, box is at bottom of row
+         */
+
+    /* Set the elements in this class to be in 1 column */
+    /* align items in this page will mean entire col is left or right justified  or BScontainer-styled-center*/
+    /* flex-direction: column;     */
+  }
+
+  /* second row */
+  /* justify-content: center; 
+            flex-start: boxes stacked on left 
+            space-between: puts margin between elements, but flushed on the sides. and this space is responsive! wow! 
+            space-around: adds margin to sides too */
+  .container-2 {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+/* End of media query */
+
+/* third row */
+/* wraps if cols get too small, when there is not enough space for all 6 cols to maintain their orig width  */
+.container-3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* use flex-basis rather than width */
+/* very much responsive */
+.container-2-box {
+  flex-basis: 31%;
+}
+
+/* zoome in to 175% to see this effect */
+.container-3-box {
+  flex-basis: 16%;
+}
+
+.container-1 div,
+.container-2 div,
+.container-3 div {
+  border: 1px solid grey;
+  padding: 2px;
+}
+
+.container-1 div {
+  background: #a3aac7;
+}
+
+.container-2 div {
+  background: #a3c0c7;
+}
+
+.container-3 div {
+  background: #b0c7a3;
+}
+
+/* Flex is pretty much like the grid system */
+/* Just make sure parent row of all columns in that row - e.g. container-1 - have display flex  */
+/* Flex number: higher ==> occupies more of screen*/
+/* Place box 1 in the middle */
+/* Note that these are all the same height, even tho height of widest col shld be the least. Nice. */
+
+.box-1 {
+  flex: 2;
+  order: 2;
+}
+
+.box-2 {
+  flex: 1;
+  order: 3;
+}
+
+.box-3 {
+  flex: 1;
+  order: 1;
+}
+
+/* Flex wrapping */

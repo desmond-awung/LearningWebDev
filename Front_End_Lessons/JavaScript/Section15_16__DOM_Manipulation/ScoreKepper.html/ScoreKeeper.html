@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Score Keeper</title>
+</head>
+
+<style type="text/css">
+    /* changes color of winner to green */
+    .winner {   
+        color: rgb(16, 121, 16);
+        border: 5px solid yellow;
+    }
+    #scoreCapInput {
+        width: 100px;
+    }
+</style>
+<body>
+    <!-- h1 contains score for p1 and p2 -->
+    <h1>
+        <span class="p1Display">0</span> to <span class="p2Display">0</span> 
+    </h1>
+
+    <!-- p contains playing to number -->
+    <p>Playing to: <span class="playingTo">5</span></p>
+
+    <!-- note: no label for select below -->
+    <!-- <select name="numGames" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select> -->
+    
+    <!-- instead: number input -->
+    <input type="number" name="numGames" id="scoreCapInput" min="1" max="10" placeholder="">
+
+    <button class="btn-p1">Player One</button>
+    <button class="btn-p2">Player Two</button>
+    <button class="reset">Reset</button>
+
+    
+    <script type="text/javascript" src="score_script.js"></script>
+</body>
+</html>

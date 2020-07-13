@@ -1,0 +1,52 @@
+/* Setting a ppty on a parent affects the the child elt */
+
+body {
+    color: blue;
+}
+ul {
+    color: lightcoral;
+}
+
+li {
+    color: green;
+}
+/* li elements also inherit ul property  */
+
+/* Specificity: multiple styles targeting one element */
+
+/* css has to decide which one wins:
+the winner is the one that is more specific */
+
+.highlight {
+    color: yellow;
+}
+/* class wins specific element */
+
+#special {
+    color: aqua;
+}
+/* id wins class */
+
+/* Specificity rules: css assigns numbers to each selector, and doses math to determine
+which selector an element will use. 
+
+Lowest: 
+(0)Type selectors (order 10^0)
+li
+li + a
+li a (more specific than the 1st one)
+
+(1) Class (10x more than (1), attributes and pseudo class selectors: (order 10^1)
+.highlight
+a[href="google.com"]
+input[type=checkbox]
+
+pseudo-class - have colon : 
+a:hover
+input:checked
+
+HIGHEST
+(2) id:
+#special 
+*/
+

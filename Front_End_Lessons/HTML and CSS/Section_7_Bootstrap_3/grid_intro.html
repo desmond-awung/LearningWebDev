@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Bootstrap Grid</title>
+
+    <style type="text/css">
+        .pink {
+            background: pink;
+            border: 2px solid green;
+        }
+        .blue {
+            background: skyblue;
+            border: 2px dashed green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- everytime we use a Bootstrap grid, t needs to be in a container -->
+    <!-- 4 sizes:  -->
+    <div class="container">
+        <!-- Yes there's a difference between lg and med columns -->
+        <!-- Even though widths are fixed, the heigh depends on the content in the col -->
+        <!-- When it hits tablet width, each cell takes 2 units  -->
+        <!-- <div class="row">
+            
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>  
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+            <div class="col-md-1 col-sm-2 pink"> COL MD 1</div>
+        </div>  -->
+
+        <!-- REM: Bootstrap takes what we set for medium and applies it to lg  -->
+        <!-- REM: When we get to mobile size, Bootstrap automatically scales to 
+        12 units (all cells stack on each other). so no need for col-xs-12 -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 pink"> TOUR DATE
+                <!-- <div class="row">
+                    <div class="col-lg-6 blue"> FIRST HALF </div>
+                    <div class="col-lg-6 blue"> SECOND HALF </div>
+                </div> -->
+            </div>
+            <div class="col-md-3 col-sm-6 pink"> TOUR DATE</div>
+            <div class="col-md-3 col-sm-6 pink"> TOUR DATE</div>
+            <div class="col-md-3 col-sm-6 pink"> TOUR DATE
+                <!-- <div class="row">
+                    <div class="col-md-2 blue">1/6th</div>
+                    <div class="col-md-2 blue">1/6th</div>
+                    <div class="col-md-2 blue">1/6th</div>
+                    <div class="col-md-2 blue">1/6th</div>
+                    <div class="col-md-2 blue">1/6th</div>
+                    <div class="col-md-2 blue">1/6th</div>
+                </div> -->
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

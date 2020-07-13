@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Display</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <h3 class="display-3">Display Utility</h3>
+
+        <h2 class="border border-danger">Hello!</h2>
+        <!-- converts a block-level element to an inline elt. Wow -->
+        <h2 class="border border-success d-inline">Hello!</h2>
+
+        <!-- using it for breakpoints -->
+        <!-- display after lg is none -->
+        <h3 class="d-lg-none">HIDE ME ON LG</h3>
+
+        <!-- display is none by default (no xs query), then becomes block after md screen size -->
+        <h3 class="d-none d-md-block">SHOW ME ON MD AND LARGER</h3>
+
+        <!-- display ionly in size md, hide in all other sizes -->
+        <h3 class="d-none d-md-block d-lg-none">SHOW ME ON MD ONLY</h3>
+
+        <hr>
+
+        <!-- Examples: hide jumbotron content -->
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quod praesentium, eos modi ratione perferendis a laboriosam rem? Quisquam nisi exercitationem expedita nostrum error enim impedit reprehenderit laudantium, tenetur dignissimos blanditiis iste ratione quidem qui cumque eos repudiandae porro inventore at beatae dolore ullam voluptate molestias. Quasi, reprehenderit, sequi suscipit natus dolor dolorum deserunt ad facere magnam unde id ipsam.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </div>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

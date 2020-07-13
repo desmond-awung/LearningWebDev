@@ -1,0 +1,39 @@
+/* h1 {
+    border: 2px solid blue;
+}
+
+#one {
+    background-color: red;
+}
+
+#two {
+    background-color: green;
+}
+
+div {
+    width: 20%;
+    /* float: this will help us push the block elements, eg div, against one another on the left side of the page so multiple divs can appear on one row. This is how we form a grid.  */
+    /* float: left; 
+ } */ 
+
+
+ img {
+     width: 30%;
+     float: left;   /*This takes away whitespace away from images which browser added for us.
+     Gives us control Try this with width: 30%. cool.*/
+     /* We will use the 10% remaining on the right side of the page () */
+     /* We have 6 margins (three images, margin for two sides - left and right - of image ==> 6 margins), and 10% 0f whitesspace to share between these ==> 10/6 = 1.66  */
+     margin: 1.66%;
+ }
+
+ p {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 23px;
+    margin-left: 1.66%;
+    text-transform: uppercase; /* Justin case it is not in caps in the html doc*/
+
+    width: 30%; /*same as width of img */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1;
+ }

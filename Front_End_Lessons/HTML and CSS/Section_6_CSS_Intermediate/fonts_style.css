@@ -1,0 +1,38 @@
+p {
+    font-family: Arial;
+    /* CSS FontStack website gives us a good list of safe bet font families (pre-installed in systems):
+     Arial is pretty safe! Helvetica not so muchon Windows */
+    /* We might have to put quotes around the "Arial", especially if the font-family number: like "72 Douala" */
+}
+
+body {
+    font-size: 10px;
+}
+
+h1 { 
+    font-family: Georgia;
+}
+
+h1 {
+    font-size: 6em;
+    text-align: center;
+}
+
+/* dounble the size of the enclosing element: no need to specify the exact font-ize: dynamic */
+/* so, <span> text will be doucle the font-size of the enclosing <p> */
+span {
+    /*font-size: 1.5em;
+    /*font-weight: 800;  /* numeric val ranges from 100-800 (100, 200, 300, etc)*/    
+    /* text-decoration: underline, overline or line-through*/
+    /*text-decoration: line-through;*/
+    font-family: 'Indie Flower', cursive;
+}
+
+p {
+    font-size: 2.0em;
+    /* font-weight: bold; */
+    line-height: 1.5; /*like line-spacing in MS  Word*/
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+}
+

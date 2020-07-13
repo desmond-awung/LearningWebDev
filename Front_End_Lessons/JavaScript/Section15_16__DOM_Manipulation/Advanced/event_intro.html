@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to Events</title>
+
+    <style type="text/css">
+    .purple {
+        background: purple;
+    } 
+    </style>
+    
+</head>
+<body>
+    <h1>Intro to Events</h1>
+
+    <h1> Hello </h1>
+    <!-- clicking this button alters the text in the p below -->
+    <button>Click Me!</button>
+    <p class="btn-click">No one has clicked this button yet</p>
+    <ul>
+        <li id="highlight"> Item A</li>
+        <li class="bolded"> Item B</li>
+        <li class="bolded"> Item C</li>
+    </ul>
+
+    <!-- clicking this button  changes background color -->
+    <button class="body-click">CLICK ME - BODY </button>
+    
+    <!-- Putting the script down here means it runs after html content has loaded. Very important in selecting events and all the like; otherwise selecting and events don't work. all elts return _null_. nada!!-->
+    <script type="text/javascript" src="event_intro.js"></script>
+</body>
+</html>

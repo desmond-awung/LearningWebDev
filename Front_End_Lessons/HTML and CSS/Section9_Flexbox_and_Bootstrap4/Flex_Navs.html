@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Flex with Navs</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-4 text-center">Flex + Navs</h1>
+
+        <!-- All navs in BootStrap have display set to flex -->
+
+        <!-- Nav using ul element-->
+        <ul class="nav border border-dark justify-content-around flex-column flex-md-row align-items-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+
+        <!-- Nav using nav element: much easier -->
+        <nav class="nav border border-success mt-3">
+            <a href="#" class="nav-item nav-link active">Active</a>
+            <a href="#" class="nav-item nav-link">Link1</a>
+            <a href="#" class="nav-item nav-link">Link2</a>
+        </nav>
+
+        <!-- interesting: difference b/w nav-fill (item width proportional to text lenght) and nav-justified (al nav items equal width)-->
+        <!-- both override placements of ml- or mr- auto (auto margin) for stuff on right -->
+        <nav class="nav nav-tabs mt-3">
+            <a href="#" class="nav-item nav-link active">Active</a>
+            <a href="#" class="nav-item nav-link">Link1</a>
+            <a href="#" class="nav-item nav-link">Link2</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a href="#" class=" ml-auto nav-item nav-link">Link-Right-Now</a>
+        </nav>
+
+        <!-- Even better than above: repsonsive link on right -->
+        <!-- Vertical aligned nav tll we hit medium.
+        At medium, become row with justify-content-md-around.
+        At large and above, shift Link-right-1 to the right (cancels justify-content-md-around: back to "start") -->
+        <nav class="nav nav-tabs mt-3 justify-content-md-around flex-column flex-md-row">
+            <a href="#" class="nav-item nav-link active">Active</a>
+            <a href="#" class="nav-item nav-link">Link1</a>
+            <a href="#" class="nav-item nav-link">Link2</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a href="#" class="ml-lg-auto nav-item nav-link">Link-Right-1</a>
+            <a href="#" class="nav-item nav-link">Link-Right-2</a>
+        </nav>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

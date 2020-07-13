@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nav Bars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <!-- <h1>Nav Bars</h1> -->
+    <nav class="navbar navbar-default">
+
+        <!-- Place container _inside_ top-most nav element 
+        So we do not constrict navbar itself but instead contents inside of it-->
+        <div class="container">
+            <!-- First part of nav bar: Brand -->
+            <div class="navbar-header">
+                <!-- For hamburger effect, paste it before brand <a> tag, like in example code -->
+                    <!-- data-target is the id of the content that hides when we hit mobile width  -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-demo-navbar1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Make sure _only_ brand is in div with class navbar-header -->
+
+                <a href="#" class="navbar-brand"> Kool Dudes</a>
+            </div>
+    
+
+            <div class="collapse navbar-collapse" id="bs-demo-navbar1"> <!-- to hide all the content wrapped in this when we hit mobile width-->
+                    <!-- Second part of nav bar:  each item in navbar is <li> tag-->
+                <div class="nav navbar-nav">
+                    <li> <a href="#"> About</a></li>
+                    <li> <a href="#"> Contact</a></li>
+                </div>
+        
+                <!-- Right side of nav bar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <a href="#">Sign up Now</a></li>
+                    <li> <a href="#">Log in</a></li>
+                </ul>
+            </div>
+            <!-- navbar-header -->
+
+        </div> 
+        <!-- container -->
+
+    </nav>
+    <!-- navbar -->
+
+
+
+
+    <!-- Default nav bar from bootstrap doc -->
+    
+    <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+              </div>
+          
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                  <li><a href="#">Link</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">One more separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#">Link</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Action</a></li>
+                      <li><a href="#">Another action</a></li>
+                      <li><a href="#">Something else here</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Separated link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+
+          <!-- Jquery is needed for bootstrap JS. Has to come before JS link below -->
+          <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+          
+          <!-- Bootstrap JS -->
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+
+</html>

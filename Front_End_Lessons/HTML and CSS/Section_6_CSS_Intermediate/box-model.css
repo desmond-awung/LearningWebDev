@@ -1,0 +1,35 @@
+p {
+    /* !!! Box model !!! */
+    /* Content == Blue box  */
+
+    /* Border  - by default on all 4 sides*/
+    /* Border no color? Inpect b/w green (padding) and orange (margin)*/
+    border: 2px solid blue;
+    /* We can also have border specific to indiv sides */
+    /* border-top: 2px solid blue;
+    border-left: 5px dotted blue; */
+
+    /* Width */
+    /* change width of the border around a content box*/
+    /*width: 200px; */
+    /* better to use % ==> % of parent elt - in this case the body */
+    width: 50%; /* Also this way it changes when we change the browser window size*/
+    /* height: 80px; Rem: this is still part of the content: blue box in Chrome */
+
+    /*Padding: space b/w content and its border - by default on all 4 sides*/
+    /* Padding == Green Box */
+    /* padding-top: 20px; Can also be specfic to a side of the box*/
+    padding: 20px; /* better use px. % values work weird - try 5%, huge padding! wow! */
+
+    /* Margin: space between border of this elt and the next element */
+    /* Margin == Orange box  */
+    /* Margins b/w elements can intersect: 
+    50px from bottom of P1 + 50 px from top of P2 == 50px total spacing */
+    /* margin: 50px; default: on all sides of the elt outside of the border */
+    /* We can also have: margin-top: 40px; */
+    /* in this order: top, rt, btm, left*/
+    /* margin: 10px 20px 80px 100px;  */
+    /* margin: 0 auto 0 auto;  this puts this elt at center of page - adjusts as browser page changes */
+    /* margin: 0 auto; */ /* same as above - we need px in there unless it's zero */
+    margin: 20px 60px; 
+}
