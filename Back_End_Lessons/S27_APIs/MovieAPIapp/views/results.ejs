@@ -1,0 +1,44 @@
+<h1>Movie Results Page! </h1>
+
+<!-- movies param contains the entire Search array for the results from the API call -->
+<p>Here are the top-10 movie titles for your search:</p>
+<!-- wrap the entire try - catch section with a ul -->
+<ul>   
+    <% try { %>
+        <% movies.forEach(movie => { %>
+        <li>
+            <strong><%= movie.Title %></strong> - <%= movie.Year %>  
+        </li>
+        <% }) %>
+    <% }  catch(err) { %> 
+        <!-- <p><%= err %> </p> -->
+        <p>No movie titles match your search! Try another title.</p>
+    <% } %> 
+     
+</ul>
+<br>
+<!-- **************************** -->
+<hr>
+
+<p>Try another search: </p>
+
+
+<!-- method 1: using a POST request: to the "/search" route in app.js -->
+<!-- <form action="/search" method="POST">
+    <input placeholder="movie keyword" name="movSearch" type="text">
+    <input type="submit">
+</form> -->
+
+<!-- method 2: using a GET request: redirects automatically to the "/results" page -->
+<!-- Saves us from setting up a POST route and having to do app.redirect() in app.js -->
+<form action="/results" method="GET">
+    <input placeholder="movie keyword" name="movSearch" type="text">
+    <input type="submit">
+</form>
+
+
+
+
+<!-- <%= movies %>  -->
+
+

@@ -1,0 +1,17 @@
+<h1>This is the friend's list</h1>
+
+<p>My friends are:</p>
+<!-- loop through the friends -->
+<% friends.forEach(friend => { %>
+<li>
+    <%= friend %> 
+</li>
+<% }) %>
+
+<form action="/add-friend" method="POST">
+    <!-- name attribute is the key which we will look up this input's data by inside the POST route (remember routes communicate via objects). -->
+    <!-- remember: no hyphens or spaces in the name attribute -->
+    <input type="text" name="newFriend" placeholder="add name">
+    <button>I made a new fiend.</button>
+</form>
+

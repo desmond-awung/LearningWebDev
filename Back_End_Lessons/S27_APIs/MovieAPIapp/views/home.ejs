@@ -1,0 +1,15 @@
+<h1>Movie Search API App</h1>
+
+<p>Type in a keyword, to see a list of movie titles containing that word.</p>
+
+<!-- method 1: using a POST request: to the "/search" route in app.js -->
+<!-- <form action="/search" method="POST">
+    <input placeholder="movie keyword" name="movSearch" type="text">
+    <button>SEARCH</button>
+</form> -->
+
+<!-- method 2: using a GET request: redirects automatically to the "/results" page -->
+<form action="/results" method="GET">
+    <input placeholder="movie keyword" name="movSearch" type="text">
+    <input type="submit">
+</form>

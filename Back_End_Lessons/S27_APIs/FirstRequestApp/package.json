@@ -1,0 +1,19 @@
+{
+  "name": "s27_apis",
+  "version": "1.0.0",
+  "description": "How to use APIs",
+  "main": "first_request.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "locus": "^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Desmond A",
+  "license": "ISC"
+}

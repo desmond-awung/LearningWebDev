@@ -1,0 +1,15 @@
+<!-- <link rel="stylesheet" href="app.css"> -->
+
+<%- include ('partials/header') %> 
+
+<h1>Welcome to <%= travelSite.toUpperCase() %>, travel beyond horizons!</h1>
+<!-- embedded js -  ejs:  <%= %> -->
+
+<!-- Logic: no equal sign: just run the code -->
+<%    if(travelSite.toLowerCase() === "germany"){ %>
+         <p>GOOD CHOICE. Germany is Beautiful!</p>
+    <% } %>
+
+    <p>P.S. This is the travel.ejs file</p>
+
+<%- include ('partials/footer') %>   

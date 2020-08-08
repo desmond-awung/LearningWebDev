@@ -1,0 +1,22 @@
+<!-- <link rel="stylesheet" href="app.css"> -->
+
+<!-- Include header template / partial -->
+<%- include ('partials/header') %> 
+
+<h1>The Posts Page</h1>
+
+<!-- note: just prints out [object Object], etc instead of the actual array elements -->
+<!-- we actually need to loop through the allPosts array! -->
+<p><%= allPosts %> </p> 
+<!-- <ul> -->
+    <% allPosts.forEach(post => { %>
+     <li>
+         <%= post.title %>, by <strong><%= post.author %> </strong>
+     </li>
+<!-- </ul> -->
+<% }) %>
+
+
+<%- include ('partials/footer') %> 
+<!-- include footer template / partial -->
+
