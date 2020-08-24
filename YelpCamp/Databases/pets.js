@@ -1,4 +1,4 @@
-// demo for using mongoose: ODM (object data mapper)
+// demo for using mongoose: ODM (object data mapper) for our databases
 // mongoose docs: https://mongoosejs.com/docs/index.html
 
 const mongoose = require("mongoose");
@@ -41,7 +41,7 @@ const george = new Pet ({
     temperament: "Playful"  
 })
 
-// save this document to the db. 1st arg is a lways be an error (in this case named "err") if any occured.
+// save this document to the db. 1st arg is always the error (in this case named "err") if any occured.
 george.save((err, pet) => {
     if(err){
         console.log("Something Went Wrong: Pet not saved");
