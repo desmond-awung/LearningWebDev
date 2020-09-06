@@ -1,0 +1,22 @@
+<!-- Blog app header -->
+<!DOCTYPE html>
+<head>
+    <title> RESTful Blog App</title>
+    <!-- Using Semantic UI for front-end. We could actually use just specific modules instead of the whole thing, unlike Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <!-- custom CSS in the public/ folder. Be sure to have "/" before the path to the css or js file  -->
+    <link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+<body>
+
+    <div class="ui fixed inverted menu top-navbar">
+        <div class="ui container">
+            <div class="header item"> <i class="comments outline icon"></i> Blog Site</div>  <!-- icon next to nav bar header-->
+            <a href="/" class="header item">Home</a>
+            <a href="/blogs/new" class="header item">New Post</a>
+        </div>
+        
+    </div>
+    <!-- add extra padding to prevent navbar from overlapping with content -->
+    <div class="pageTop"></div>
+
