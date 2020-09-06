@@ -93,6 +93,26 @@ app.post("/blogs", (req, res) => {
             res.redirect("/blogs");
         }
     });
+});
+
+// SHOW ROUTE
+app.get("/blogs/:id", (req, res) => {
+    // console.log(req.params.id);  - for debug
+    // res.send(`  This is the SHOW page.\
+    //         \n  id = ${req.params.id}  Yeah...`);
+
+    // first find the corresponding blog from DB
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/blogs")
+        } else {
+            // render the show template for this blog selected
+            console.log(foundBlog);
+            res.render("show", {blog : foundBlog})
+
+        }
+    })
 
 });
 

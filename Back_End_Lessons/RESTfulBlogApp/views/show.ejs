@@ -1,0 +1,23 @@
+<%- include ("partials/header.ejs") %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header"> <%= blog.title %> </div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered medium rounded image" src=" <%= blog.image %> " alt=""> 
+
+            <div class="content">
+                    <div> <%= blog.created.toDateString() %> </div>
+            </div>
+
+            <div class="description">
+                <!-- <%- %> evaluates whatever is passed to it as html. That wway, users can input html markup and keep formatting -->
+                <!-- just make sure there are no script tags in this input ==> check out the "Sanitize" app -->
+                <p> <%- blog.body %> </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include ("partials/footer.ejs") %>
+

@@ -4,14 +4,21 @@
 
 <h1>THIS IS THE INDEX PAGE</h1>
 <% blogs.forEach(blog => { %>
-<div>
+<div class="blog-element">
     <h3>  <%= blog.title  %> </h3>
     <div> Date Created: <%= blog.created %> </div>
     <div> <img src=" <%= blog.image %> " alt="" style="height: 200px;"> </div>
     <p>
-        <%= blog.body %> 
+        <!-- Truncate the blog post body to the forst 100 xters -->
+        <%= blog.body.substring(0,100) %>...
     </p>
-    <% }) %>
+    <div>
+        <a href="/blogs/<%= blog._id %>">Read More</a>
+    </div>
+    <div>
+        <hr>
+    </div>
 </div>
+<% }) %>
 
 <%- include("partials/footer.ejs") %>
