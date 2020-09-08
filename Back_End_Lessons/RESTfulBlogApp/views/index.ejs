@@ -2,23 +2,43 @@
 
 <%- include("partials/header.ejs") %>
 
-<h1>THIS IS THE INDEX PAGE</h1>
-<% blogs.forEach(blog => { %>
-<div class="blog-element">
-    <h3>  <%= blog.title  %> </h3>
-    <div> Date Created: <%= blog.created %> </div>
-    <div> <img src=" <%= blog.image %> " alt="" style="height: 200px;"> </div>
-    <p>
-        <!-- Truncate the blog post body to the forst 100 xters -->
-        <%= blog.body.substring(0,100) %>...
-    </p>
-    <div>
-        <a href="/blogs/<%= blog._id %>">Read More</a>
-    </div>
-    <div>
-        <hr>
+<div class="ui main text container">
+    <div class="ui huge header index-page-top">RESTful Blog App</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+
+            <% blogs.forEach(blog => { %>
+                <div class="blog-element item">
+                    <!-- image for this ui item -->
+                    <div class="image"> <img src=" <%= blog.image %> " alt=""> </div>
+
+                    <!-- content for this ui item -->
+                    <div class="content">
+                        <a class="header" href="/blogs/<%= blog._id %>">  
+                            <%= blog.title  %>
+                        </a>
+                        <div class="meta"> 
+                            <%= blog.created.toDateString() %> 
+                        </div>
+                        <div class="description">
+                            <!-- Truncate the blog post body to the forst 100 xters -->
+                            <%- blog.body.substring(0,100) %>...
+                        </div>
+                     
+                        <div class="extra">
+                            <a class="ui floated small primary button" href="/blogs/<%= blog._id %>">
+                                Read More <i class="right chevron icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+    
+                </div>
+                <% }) %>
+
+        </div>
+            
     </div>
 </div>
-<% }) %>
 
 <%- include("partials/footer.ejs") %>

@@ -5,6 +5,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
+const expressSanitizer = require("express-sanitizer");
 
 const port = 3000;      // port used for node.js server
 
@@ -15,7 +17,12 @@ app.set("view engine", "ejs"); // skip all .ejs file extensions in routes
 // so all html <link> tags in the head will point to public/...
 app.use(express.static("public"));  // to serve our custom stylesheets
 app.use(bodyParser.urlencoded({extended: true}));   // init body-parser for html passing info from forms
-
+// config the app: whenever we receive a POST request with the string "_method" as a parameter, take whatever this param is equal to and treat the req as that kind of request.
+// .../?_method=PUT ===> treats the req as a PUT request 
+app.use(methodOverride("_method"));
+// this is needed for sanitizing inputs in the UPDATE and CREATE routes
+// make sure this line goes _after_ body-parser
+app.use(expressSanitizer());
 
 // configure mongoose
 mongoose.connect("mongodb://localhost/restful_blog_app", {
@@ -83,6 +90,12 @@ app.get("/blogs/new", (req, res) => {
 app.post("/blogs", (req, res) => {
     // get the blog info from the form and create a Blog document to the DB
     // console.log(req.body.blog);     // - for debug
+
+    // sanitize the blog body
+    // console.log(req.body.blog.body); - debug
+    req.body.blog.body = req.sanitize(req.body.blog.body)
+    // console.log("==================");   - for debug
+    // console.log(req.body.blog.body);    // shows body with script tags stripped off: sanitized
     Blog.create(req.body.blog, (err, newBlog) => {
         if(err) {
             console.log(err);
@@ -104,18 +117,68 @@ app.get("/blogs/:id", (req, res) => {
     // first find the corresponding blog from DB
     Blog.findById(req.params.id, (err, foundBlog) => {
         if(err) {
+            // If not found, redirect to INDEX page
             console.log(err);
-            res.redirect("/blogs")
+            res.redirect("/blogs")  
         } else {
             // render the show template for this blog selected
-            console.log(foundBlog);
+            // console.log(foundBlog);  - for debug
             res.render("show", {blog : foundBlog})
-
+            
         }
     })
+});
+
+
+// EDIT ROUTE
+app.get("/blogs/:id/edit", (req, res) => {
+    // use the id to get the blog to display
+    Blog.findById(req.params.id, (err, foundBlog) => {
+        if(err) {
+            // If not found, redirect to INDEX page
+            console.log(err);
+            res.redirect("/blogs");
+        } else {
+            res.render("edit", {blog : foundBlog});
+        }
+    });
 
 });
 
+// UPDATE ROUTE
+app.put("/blogs/:id", (req, res) => {
+    // res.send(`update Route. ID for this route is: ${req.params.id} `) - for debug
+    // really cool method - find and upadte a DB document in one swoop
+    // Blog.findByIdAndUpdate(id, newDataObj, callback)
+        // sanitize the blog body
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/blogs");
+        } else {
+            // redirect to this blog's show page, to show updated content
+            console.log(`Blog was Updated: ${updatedBlog}`);
+            res.redirect(`/blogs/${req.params.id}`);
+
+        }
+    });
+});
+
+// DELETE ROUTE
+app.delete("/blogs/:id", (req, res) => {
+    // res.send("YOU HAVE REACHED THE DESTROY ROUTE") - for debug
+    // find and delete a blog in one swoop
+    Blog.findByIdAndRemove(req.params.id, (err) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/blogs")      // redirect to index page
+        } else {
+            // console.log(`Blog was Deleted: ${deletedBlog}`); -- does not work 
+            res.redirect("/blogs");     // redirect to index page
+        }
+    });
+});
 
 app.listen(port, () => {
     console.log(`Blog App started at: ${port}`);

@@ -1,14 +1,15 @@
 
 /* for the icon on the left of the navbar */
-i.icon {
+i.navbar-icon {
     font-size: 2em;
 }
 
 div.pageTop {
-    padding-top: 4.0em;
+    padding-top: 4.5em;
 }
 
-.blog-element {
-    margin-top: 2em;
-    margin-bottom: 1em;
+
+/* displays the delete button/form inline with content before it */
+form.delete-btn {
+    display: inline;
 }

@@ -4,7 +4,7 @@
     <div class="ui huge header"> <%= blog.title %> </div>
     <div class="ui top attached">
         <div class="item">
-            <img class="ui centered medium rounded image" src=" <%= blog.image %> " alt=""> 
+            <img class="ui centered medium rounded image" src=" <%= blog.image %> " alt="Image"> 
 
             <div class="content">
                     <div> <%= blog.created.toDateString() %> </div>
@@ -12,9 +12,16 @@
 
             <div class="description">
                 <!-- <%- %> evaluates whatever is passed to it as html. That wway, users can input html markup and keep formatting -->
-                <!-- just make sure there are no script tags in this input ==> check out the "Sanitize" app -->
+                <!-- just make sure there are no script tags in this input ==> check out the "Sanitize" feature -->
                 <p> <%- blog.body %> </p>
             </div>
+            <!-- we don't need a form to go to the edit page, since it's a simple get request  -->
+            <a href="/blogs/<%= blog._id%>/edit" class="ui orange basic button"> Edit</a>
+ 
+            <!-- form to delete this blog -->
+            <form action="/blogs/<%= blog._id %>/?_method=DELETE" method="POST" class="delete-btn">
+                <button class="ui red basic button"> Delete </button>
+            </form>
         </div>
     </div>
 
