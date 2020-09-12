@@ -8,28 +8,10 @@ mongoose.connect("mongodb://localhost/blog_demo_2", {
 .then(() => console.log("Connected to the Associations Blog Demo"))
 .catch((err) => console.log(err.message));
 
-// two models:
-// POST - title, content
-const postSchema = new mongoose.Schema({
-    title : String,
-    content : String,
-});
-const Post = mongoose.model("Post", postSchema);
+// remember to use ./ for the current directory
+const Post = require("./models/post");
+const User = require("./models/user");
 
-// USER - email, name
-const userSchema = new mongoose.Schema({
-    email : String,
-    name : String,
-    // reference the user's posts in the user collection using reference IDs 
-    // an array of mongoose object IDs belonging to a Post model
-    posts : [
-        {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "Post"
-        }
-    ]
-});
-const User = mongoose.model("User", userSchema); 
 
 
 // User.create({
@@ -44,10 +26,10 @@ const User = mongoose.model("User", userSchema);
 // });
 
 // creating a post and adding to a user
-/*
+// /*
 Post.create({
-    title : "Peter Piper",
-    content : "jfbid wfhIDF DBFSDB dfhgifdh",
+    title : "Twinkle Twinkle Little Star",
+    content : "I will stay and Wait till...",
 }, (err, post) => {
     if(err) {
         console.log(err);
@@ -77,7 +59,7 @@ Post.create({
         })  // end of .findOne callback  
     }
 }); // end of .create callback
-*/
+// */
 
 // retrieve user data with all posts populated, not just references
 // we see that user only stores references to a post, via object IDs.
@@ -86,10 +68,10 @@ Post.create({
 // chain qucommands: find user + find all posts for that user
 // .populate -- populates the field _posts_ for the _user_ in the callback with actual posts, not just the Object IDs
 // .exec -- starts the query, execute the code
-User.findOne({email : "matt.maher@worship.com"}).populate("posts").exec((err, user) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(user);
-    }
-})
+// User.findOne({email : "matt.maher@worship.com"}).populate("posts").exec((err, user) => {
+//     if(err) {
+//         console.log(err);
+//     } else {
+//         console.log(user);
+//     }
+// })
