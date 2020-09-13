@@ -13,8 +13,6 @@ const   express     = require("express");
 // import DB models
 const Campground = require("./models/campground");
 
-// seed the DB:
-seedDB();
 
 // init express
 app.set("view engine", "ejs");  // skip all .ejs file extensions in routes
@@ -33,6 +31,8 @@ mongoose.connect("mongodb://localhost/yelp_camp", {
 .then(() => console.log("Connected to the Yelpcamp DB"))
 .catch(error => console.log(error.message));
 
+// seed the DB:
+seedDB();
 
 // init node server
 const port = 3000;

@@ -23,7 +23,16 @@ const allCamps = [
 ]
 
 function seedDB() {
-    // remove every document from this collection
+    // remove every document from the campgrounds and comments collections:
+    // remove all comments
+    Comment.remove((err) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("removed all comments");
+        }
+    });
+
     // remove all campgrounds
     Campground.remove((err) => {
         if(err) {
@@ -37,7 +46,6 @@ function seedDB() {
         }
     })
 }
-
 
 // add a few campgrounds
 function addCamgrounds() {
