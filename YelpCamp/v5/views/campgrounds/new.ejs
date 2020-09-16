@@ -1,0 +1,38 @@
+<%- include("../partials/header")%>
+
+
+
+<div class="container">
+    <h1 class="text-center"> Create a new Campground </h1> <!-- we could also do: <h1 style="text-align: center;" > same as BS3 class="text-center" -->
+    <div class="row">
+        <!-- don't use grid here: <div class="col-xs-3"> this does not work! -->
+        <div style="width: 30%; margin: 30px auto;">    
+
+            <!-- action: points to "/campgrounds", REST format -->
+            <form action = "/campgrounds" method ="POST">
+
+                <div class="form-group">    <!-- adds margin below the input elt-->
+                    <input class="form-control" type="text" placeholder="camp name" name ="camp_name"> 
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="image url" name ="image_url"> 
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="description" name ="description"> 
+                </div>
+                <div class="form-group">
+                    <!-- btn-block ==> makes btn into block element -->
+                    <button class="btn btn-lg btn-primary btn-block"> Submit </button>
+                </div>
+    
+            </form>
+            
+            <!-- BS3 makes it so easy to have <a> tags as buttons -->
+            <a class=" btn btn-default" href="/campgrounds"> See All Campgrounds </a>
+        </div>
+    </div>
+</div>
+
+
+<%- include("../partials/footer")%>
+
