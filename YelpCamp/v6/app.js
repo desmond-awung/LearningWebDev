@@ -57,8 +57,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// passport + session stuff
-
+// middleware called in every single route, to pass the user info to all templates
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+})
 
 // ROUTES
 // Landing page
@@ -80,20 +83,22 @@ app.get("/", (req, res) => {
 
 // INDEX
 app.get("/campgrounds", (req, res) => {                 // REST format
+    console.log(req.user);  // req.user the username and _id of the currently logged in user
     // get all cgs from db
     Campground.find((err, allCampgrounds) => {
         if(err) {
             console.log(err);
         } else {
             // allCampgrounds contains a list/array of all objects corresponding to the documents from the db
-            res.render("campgrounds/index", {camps : allCampgrounds})
+            res.render("campgrounds/index", {camps : allCampgrounds })
             // console.log((allCampgrounds));
         }
     });
 });
 
 // CREATE
-app.post("/campgrounds", (req, res) => {                // REST format
+// contains middleware to check for user authentication
+app.post("/campgrounds", isLoggedIn, (req, res) => {                // REST format
     // get data from form and add to campgrounds[] array
     const campName = req.body.camp_name;
     const campImgUrl = req.body.image_url;
@@ -112,14 +117,15 @@ app.post("/campgrounds", (req, res) => {                // REST format
             console.log(`New Campground created:`);
             // console.log(newlyCreated);
             // redirect back to /index page
-            res.redirect("campgrounds/index");  
+            res.redirect("/campgrounds");  
         }
     });  // end of Campground.create 
 });    // end of campground POST route
 
 // NEW
 // shows form that sends data to post route
-app.get("/campgrounds/new", (req, res) => {                 // REST format
+// contains middleware to check for user authentication
+app.get("/campgrounds/new", isLoggedIn, (req, res) => {                 // REST format
     res.render("campgrounds/new");
 })
 
@@ -147,7 +153,8 @@ app.get("/campgrounds/:id", (req, res) => {
 // COMMENT ROUTES
 // =====================
 // NEW COMMENT
-app.get("/campgrounds/:id/comments/new", (req, res) => {
+// contains middleware to check for user authentication
+app.get("/campgrounds/:id/comments/new", isLoggedIn, (req, res) => {
     // res.send("This will be the NEW COMMENT form")
     // const campID = req.params.id; 
     // lookup campground using ID
@@ -164,7 +171,8 @@ app.get("/campgrounds/:id/comments/new", (req, res) => {
 });
 
 // CREATE COMMENT
-app.post("/campgrounds/:id/comments", (req, res) => {
+// contains middleware to check for user authentication
+app.post("/campgrounds/:id/comments", isLoggedIn, (req, res) => {
     // 1. lookup campground using ID
     Campground.findById(req.params.id, (err, foundCampground) => {
         if(err) {
@@ -248,8 +256,29 @@ app.post(   "/login",
                                     }),         
             function(req, res){
                 // res.send("I will log you in soon.")
+                // console.log(`user: ${req.body.username} logged in successfully.`);
             }
 );
+
+// 3. LOG OUT
+app.get("/logout", function(req, res){
+    req.logout();
+    console.log(`user logged out successfully.`);
+    res.redirect("/campgrounds");
+});
+
+// middleware to restrict access
+function isLoggedIn(req, res, next){
+    
+    if(req.isAuthenticated()){
+        console.log("User is authenticated, and good to go");
+        return next();  
+    }
+    // if user is not authenticated, don't allow access and redirect to the login page
+    console.log("Opps. Hold up! User is not authenticated.");
+    res.redirect("/login")
+
+}
 
 // start server
 app.listen(port, () => {
