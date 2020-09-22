@@ -1,0 +1,71 @@
+<%- include("../partials/header") %> 
+
+<div class="container">
+    <div class="row">
+        <!-- sidebar: 3/12 grid -->
+        <div class="col-md-3">
+            <p class=lead>
+                Yelpcamp
+            </p>
+
+            <div class="list-group">
+                <li href="#" class="list-group-item active">Category 1</li>
+                <li href="#" class="list-group-item">Category 2</li>
+                <li href="#" class="list-group-item">Category 3</li>
+            </div>
+            <!-- MAP will go here -->
+        </div>
+
+
+        <!-- campground info: 9/12 grid -->
+        <div class="col-md-9">
+            <div class="thumbnail show-thumbnail">
+    
+                <!-- <h1> This is the show template</h1>
+    
+                <p>Description: </p> -->
+    
+                <img class="img-responsive" src="<%= showCampground.image  %> " alt="image of the <%= showCampground.name %> ">
+
+                <div class="caption-full show-camp-info">
+                    <h4 class="pull-right"> $9.00/night </h4>   <!-- inline element that aligns to the right -->
+                    <h4> 
+                        <a href="#"><%= showCampground.name %> </a>
+                    </h4>    <!-- automatically aligns to the left-->
+                    <p> <%= showCampground.description %> </p>
+                </div>
+
+
+            </div> <!-- thumbnail-->
+
+            <div class="well">  <!-- gives us nice inset grey backgroun-->
+                <div class="text-right">    <!-- BLOCK element that aligns to the right -->
+                    <a class="btn btn-success" href="/campgrounds/<%= showCampground._id %>/comments/new"> Add New Comment </a>
+                </div>
+                <hr>
+    
+                <!-- <h4>Comments</h4> -->
+    
+                <% showCampground.comments.forEach(comment => { %>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="pull-right"> 10 days ago </span>
+                            <p>
+                                <%= comment.content %>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                
+                <% }) %>
+            </div>
+
+        </div> <!-- grid: col-md-9 -->
+
+    </div>
+
+</div>
+
+<%- include("../partials/footer") %> 
