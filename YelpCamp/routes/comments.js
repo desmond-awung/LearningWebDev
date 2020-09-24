@@ -8,7 +8,7 @@ const router = express.Router({mergeParams : true});    // merge the params from
 // import DB models needed
 const Campground = require("../models/campground");
 const Comment = require("../models/comment");
-const User = require("../../v7/models/user");
+const User = require("../models/user");
 
 // NEW COMMENT
 // contains middleware to check for user authentication
