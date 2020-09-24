@@ -21,11 +21,11 @@ const campgroundRoutes  = require("./routes/campgrounds"),
 
 // init mongoose for MongoDB
 // should this be "mongodb://localhost:27017/yelp_camp" instead (as per mongoodes docs?)
-mongoose.connect("mongodb://localhost/yelp_camp_v8", {
+mongoose.connect("mongodb://localhost/yelp_camp_v9", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(() => console.log("Connected to the Yelpcamp v8 DB"))
+.then(() => console.log("Connected to the Yelpcamp v9 DB"))
 .catch(error => console.log(error.message));
 
 // import DB models

@@ -1,7 +1,7 @@
 {
   "name": "yelpcamp",
   "version": "0.8.0",
-  "description": "YelpCamp v8. Web app that displays different camps, just like Yelp does. v8 adds User associations to Comments",
+  "description": "YelpCamp v9. Web app that displays different camps, just like Yelp does. v9 adds User associations to Canpgrounds",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

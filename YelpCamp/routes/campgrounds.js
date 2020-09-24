@@ -43,10 +43,16 @@ router.post("/", isLoggedIn, (req, res) => {                // REST format
     const campName = req.body.camp_name;
     const campImgUrl = req.body.image_url;
     const campDescription = req.body.description;
+    // console.log(req.user);
+    const author = {
+        id : req.user._id,
+        username : req.user.username
+    }
     const newCampground = {
         name : campName,
         image : campImgUrl,
         description : campDescription,
+        author : author
     };
     // console.log(newCampground);
     // create a new campground document and save to campgrounds collection in DB
