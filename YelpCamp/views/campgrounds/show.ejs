@@ -25,18 +25,21 @@
     
                 <p>Description: </p> -->
     
-                <img class="img-responsive" src="<%= showCampground.image  %> " alt="image of the <%= showCampground.name %> ">
+                <img class="img-responsive" src="<%= campground.image  %> " alt="image of the <%= campground.name %> ">
 
                 <div class="caption-full show-camp-info">
                     <h4 class="pull-right"> $9.00/night </h4>   <!-- inline element that aligns to the right -->
                     <h4> 
-                        <a href="#"><%= showCampground.name %> </a>
+                        <a href="#"><%= campground.name %> </a>
                     </h4>    <!-- automatically aligns to the left-->
-                    <p> <%= showCampground.description %> </p>
+                    <p> <%= campground.description %> </p>
                     <p> 
                         <em>
-                            Sumbitted by <%= showCampground.author.username %> </p>
+                            Sumbitted by <%= campground.author.username %> 
                         </em> 
+                    </p>
+                    <!-- button to the Edit route (show form) -->
+                     <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit"> Edit </a>
                 </div>
 
 
@@ -44,13 +47,13 @@
 
             <div class="well">  <!-- gives us nice inset grey backgroun-->
                 <div class="text-right">    <!-- BLOCK element that aligns to the right -->
-                    <a class="btn btn-success" href="/campgrounds/<%= showCampground._id %>/comments/new"> Add New Comment </a>
+                    <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new"> Add New Comment </a>
                 </div>
                 <hr>
     
                 <!-- <h4>Comments</h4> -->
     
-                <% showCampground.comments.forEach(comment => { %>
+                <% campground.comments.forEach(comment => { %>
 
                     <div class="row">
                         <div class="col-md-12">

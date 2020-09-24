@@ -12,6 +12,7 @@ const   express     = require("express"),
         mongoose    = require("mongoose"),
         passport    = require("passport"),
         LocalStrategy = require("passport-local"),
+        methodOverride = require("method-override"),
         seedDB      = require("./seeds")        // make sure the last one has no comma :)
  
 // requiring routes
@@ -21,11 +22,11 @@ const campgroundRoutes  = require("./routes/campgrounds"),
 
 // init mongoose for MongoDB
 // should this be "mongodb://localhost:27017/yelp_camp" instead (as per mongoodes docs?)
-mongoose.connect("mongodb://localhost/yelp_camp_v9", {
+mongoose.connect("mongodb://localhost/yelp_camp_v10", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(() => console.log("Connected to the Yelpcamp v9 DB"))
+.then(() => console.log("Connected to the Yelpcamp v10 DB"))
 .catch(error => console.log(error.message));
 
 // import DB models
@@ -42,8 +43,8 @@ app.use(express.static(__dirname +  "/public"));    // just to be safe: dir name
 // init body-parser  - for pssing objects b/w front-end and back-end 
 app.use(bodyParser.urlencoded({extended : true}));
 
-// v8 : commented out: stop seeding the DB
-// seedDB();    // seed the DB
+// method override : for PUT and DELETE HTTP requests
+app.use(methodOverride("_method"));
 
 // init node server
 const port = 3000;

@@ -1,7 +1,7 @@
 {
   "name": "yelpcamp",
-  "version": "0.8.0",
-  "description": "YelpCamp v9. Web app that displays different camps, just like Yelp does. v9 adds User associations to Canpgrounds",
+  "version": "0.10.0",
+  "description": "YelpCamp v10. Web app that displays different camps, just like Yelp does. v10 adds CRUD ability and authorizations for campgrounds",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,7 @@
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
     "mongoose": "^5.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

@@ -19,6 +19,8 @@ const indexRouter = require("./index");
 
 // import DB models needed
 const Campground = require("../models/campground");
+const { route } = require("./index");
+const { update } = require("../models/campground");
 
 
 // INDEX - all campgrounds
@@ -60,7 +62,7 @@ router.post("/", isLoggedIn, (req, res) => {                // REST format
         if(err) {
             console.log(err);
         } else {
-            console.log(`New Campground created:`);
+            console.log(`New Campground created: ${newlyCreated.name}`);
             // console.log(newlyCreated);
             // redirect back to /index page
             res.redirect("/campgrounds");  
@@ -88,12 +90,44 @@ router.get("/:id", (req, res) => {
         } else {
             // console.log(foundCampground);
             // // render the show template for this foundCampground
-            res.render("campgrounds/show", {showCampground : foundCampground});
+            res.render("campgrounds/show", {campground : foundCampground});
             // console.log(req.params);
         }
 
     });     // end of findById callback
 });     // end of SHOW route
+
+
+// EDIT
+router.get("/:id/edit", isLoggedIn, (req, res) => {
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if(err) {
+            console.log(err);
+        } else {
+            // console.log(foundCampground);
+            res.render("campgrounds/edit", {campground : foundCampground});
+        }
+    });
+    // res.send("The EDit Page");
+})
+
+
+// UPDATE
+router.put("/:id", isLoggedIn, (req, res) => {
+    // req.body.    ==> for sanitize
+    // console.log("Now in put request");    debug
+    // console.log(req.body);   debug
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/campgrounds");   // if this campground's id is not found, redirect to index page
+        } else {
+            console.log(`Campground was updated: ${updatedCampground.name}`);
+            // console.log(updatedCampground);
+            res.redirect(`/campgrounds/${req.params.id}`);     // redirect to this campground's show page
+        }
+    });
+})
 
 
 // middleware to restrict access
