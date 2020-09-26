@@ -29,6 +29,10 @@ mongoose.connect("mongodb://localhost/yelp_camp_v10", {
 .then(() => console.log("Connected to the Yelpcamp v10 DB"))
 .catch(error => console.log(error.message));
 
+// Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
+// by default, you need to set it to false.
+mongoose.set('useFindAndModify', false);
+
 // import DB models
 const User = require("./models/user");
 const Campground = require("./models/campground");

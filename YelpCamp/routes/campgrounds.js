@@ -19,8 +19,9 @@ const indexRouter = require("./index");
 
 // import DB models needed
 const Campground = require("../models/campground");
-const { route } = require("./index");
-const { update } = require("../models/campground");
+const Comment = require("../models/comment");
+// const { route } = require("./index");
+// const { update } = require("../models/campground");
 
 
 // INDEX - all campgrounds
@@ -99,21 +100,16 @@ router.get("/:id", (req, res) => {
 
 
 // EDIT
-router.get("/:id/edit", isLoggedIn, (req, res) => {
-    Campground.findById(req.params.id, (err, foundCampground) => {
-        if(err) {
-            console.log(err);
-        } else {
-            // console.log(foundCampground);
-            res.render("campgrounds/edit", {campground : foundCampground});
-        }
-    });
-    // res.send("The EDit Page");
+// contains middleware to check for user authentication and authorization
+router.get("/:id/edit", checkCampgroundOwnership, (req, res) => {
+    // console.log(req);
+    res.render("campgrounds/edit", {campground : req.foundCampground});
 })
 
 
 // UPDATE
-router.put("/:id", isLoggedIn, (req, res) => {
+// contains middleware to check for user authentication and authorization
+router.put("/:id", checkCampgroundOwnership, (req, res) => {
     // req.body.    ==> for sanitize
     // console.log("Now in put request");    debug
     // console.log(req.body);   debug
@@ -129,8 +125,64 @@ router.put("/:id", isLoggedIn, (req, res) => {
     });
 })
 
+// DESTROY
+// contains middleware to check for user authentication and authorization
+router.delete("/:id", checkCampgroundOwnership, (req, res) => {
+    // res.send("You really want to delete...")
+    // display the canpground name first..
+    let campToDel_name;
+    Campground.findById(req.params.id, (err, campgroundToDelete) => {
+        if(err) {
+            console.log(err);
+            res.redirect("/campgrounds");   // redirect to the index page
+        } else {
+            // console.log(foundCampground);
+            campToDel_name = campgroundToDelete.name; 
+            console.log(`Campground to be deleted: ${campToDel_name}`);   // will use this for the "Are you sure you want to delete" pop-up      
+            // .remove() is deprecated. Use deleteOne,deleteMany, or bulkWrite instead.
+            // Campground.remove({_id : foundCampground._id}, (err, result) => {
+            Campground.deleteOne({_id : campgroundToDelete._id}, (err, result_camp) => {
+                if(err) {
+                    console.log(err);
+                    console.log("campground could not be deleted");
+                    res.redirect("/campgrounds");
+                } else {
+                    // delete all comments associated with this campground from DB
+                    Comment.deleteMany({_id : {$in : campgroundToDelete.comments}}, (err, result_comment) => {
+                        if(err) {
+                            console.log("campground could not be deleted");
+                            console.log(err);
+                            res.redirect("/campgrounds");   // redirect to the index page
+                        } else {
+                            console.log("Comments deletion info:");
+                            console.log(result_comment);
+                        }
+                    });
+                    // code reaches here if 
+                    console.log(`Campground successfully deleted: ${campToDel_name}, with all associated comments.`);            
+                    console.log("Campgrrounds deletions info:");
+                    console.log(result_camp);    // displays object with details on what was deleted
+                    res.redirect("/campgrounds");   // redirect to the index page
+                }
+            });
+        }
+    });
 
-// middleware to restrict access
+    // another way - the old way?
+    // Campground.findByIdAndRemove(req.params.id, (err) => {
+    //     if(err) {
+    //         console.log(err);
+    //         res.redirect("/campgrounds");   // redirect to the index page
+    //     } else {
+    //         console.log(`Campground successfully deleted: ${camp_name}`);
+    //         res.redirect("/campgrounds");   // redirect to the index page
+    //     }
+
+    // });
+})
+
+
+// middleware to implement authentication - verifies logging in
 function isLoggedIn(req, res, next){
     
     if(req.isAuthenticated()){
@@ -142,5 +194,50 @@ function isLoggedIn(req, res, next){
     res.redirect("/login")
 
 }
+
+// middleware to check for authorization on campgrounds
+function checkCampgroundOwnership (req, res, next) {
+    /// is user logged in?
+    if(req.isAuthenticated()) {
+        console.log("User logged in successfully");
+        Campground.findById(req.params.id, (err, foundCampground) => {
+            if(err) {
+                console.log(err);
+                res.redirect("back");
+            } else {
+                // console.log(foundCampground);
+                /// does user own campground
+                /*
+                    Even though both req.user._id and foundCampground.author.id appear to be the same when displayed on the console, they are not. 
+                    Both are of type object, but do not equal each other.
+                    Hence we cannot compare them using === or ==. That is, the following does not work - it will never evaluate to true 
+                    if(req.user._id == foundCampground.author.id) { 
+                    We have to use the .equals() method from mongoose:
+                    if(foundCampground.author.id.equals(req.user._id)) { 
+                        make sure the document found is on the left hand side, and req.user._id is on the right
+                */
+                console.log(req.user._id, typeof(req.user._id));  
+                console.log(foundCampground.author.id, typeof(foundCampground.author.id)); 
+
+                if(foundCampground.author.id.equals(req.user._id)) { 
+                    console.log("User is Authorized to do this action.");
+                    // pass the foundCampground to next() using req - similar to how bodyParser attaches body property to request object 
+                    // Thanks to Farid's answer: https://stackoverflow.com/a/23965964/12008034
+                    // make sure no other library uses this property - foundCampground - so there's no conflicts within the objects in req
+                    req.foundCampground = foundCampground;
+                    next();
+                } else {
+                    // res.send(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
+                    console.log("AUTHORIZATION FAILED");
+                    console.log(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
+                    res.redirect("back");
+                }
+            }  // end else findById no error
+        }); // end of .findbyId callback
+    } else {
+        console.log("LOGIN FAILED - You need to be logged in to do that.");
+        res.redirect("back");   // take the user back to previous page they were on
+    }
+} 
 
 module.exports = router;

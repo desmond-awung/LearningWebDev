@@ -39,7 +39,12 @@
                         </em> 
                     </p>
                     <!-- button to the Edit route (show form) -->
-                     <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit"> Edit </a>
+                     <a class="btn btn-sm btn-warning" href="/campgrounds/<%= campground._id %>/edit"> Edit </a>
+                    
+                     <!-- form to delete this route -->
+                     <form id="campround-delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger"> Delete </button>
+                     </form>
                 </div>
 
 

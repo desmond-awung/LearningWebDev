@@ -14,3 +14,8 @@
 .thumbnail.show-thumbnail{
     padding: 0 0;
 }
+
+/* Delete button on the Campground Show template */
+#campround-delete-form {
+    display: inline;
+}
