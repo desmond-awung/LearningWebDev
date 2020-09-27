@@ -13,9 +13,13 @@
 
 const express = require("express");
 const router = express.Router();
+// import middleware 
+// if we require a directory, express automatically requires the content of index.js. So we don't need to write require("../middleware/index")
+const middleware = require("../middleware");
+
 
 // import index.js
-const indexRouter = require("./index");
+// const indexRouter = require("./index");
 
 // import DB models needed
 const Campground = require("../models/campground");
@@ -41,7 +45,7 @@ router.get("/", (req, res) => {                 // REST format
 
 // CREATE
 // contains middleware to check for user authentication
-router.post("/", isLoggedIn, (req, res) => {                // REST format
+router.post("/", middleware.isLoggedIn, (req, res) => {                // REST format
     // get data from form and add to campgrounds[] array
     const campName = req.body.camp_name;
     const campImgUrl = req.body.image_url;
@@ -74,7 +78,7 @@ router.post("/", isLoggedIn, (req, res) => {                // REST format
 // NEW
 // shows form that sends data to post route
 // contains middleware to check for user authentication
-router.get("/new", isLoggedIn, (req, res) => {                 // REST format
+router.get("/new", middleware.isLoggedIn, (req, res) => {                 // REST format
     res.render("campgrounds/new");
 })
 
@@ -101,7 +105,7 @@ router.get("/:id", (req, res) => {
 
 // EDIT
 // contains middleware to check for user authentication and authorization
-router.get("/:id/edit", checkCampgroundOwnership, (req, res) => {
+router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
     // console.log(req);
     res.render("campgrounds/edit", {campground : req.foundCampground});
 })
@@ -109,7 +113,7 @@ router.get("/:id/edit", checkCampgroundOwnership, (req, res) => {
 
 // UPDATE
 // contains middleware to check for user authentication and authorization
-router.put("/:id", checkCampgroundOwnership, (req, res) => {
+router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
     // req.body.    ==> for sanitize
     // console.log("Now in put request");    debug
     // console.log(req.body);   debug
@@ -133,7 +137,7 @@ router.put("/:id", checkCampgroundOwnership, (req, res) => {
 
 // DESTROY
 // contains middleware to check for user authentication and authorization
-router.delete("/:id", checkCampgroundOwnership, (req, res) => {
+router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
     // res.send("You really want to delete...")
     // display the canpground name first..
     let campToDel_name;
@@ -187,63 +191,5 @@ router.delete("/:id", checkCampgroundOwnership, (req, res) => {
     // });
 })
 
-
-// middleware to implement authentication - verifies logging in
-function isLoggedIn(req, res, next){
-    
-    if(req.isAuthenticated()){
-        console.log("User is authenticated, and good to go");
-        return next();  
-    }
-    // if user is not authenticated, don't allow access and redirect to the login page
-    console.log("Opps. Hold up! User is not authenticated.");
-    res.redirect("/login")
-
-}
-
-// middleware to check for authorization on campgrounds
-function checkCampgroundOwnership (req, res, next) {
-    /// is user logged in?
-    if(req.isAuthenticated()) {
-        console.log("User logged in successfully");
-        Campground.findById(req.params.id, (err, foundCampground) => {
-            if(err) {
-                console.log(err);
-                res.redirect("back");
-            } else {
-                // console.log(foundCampground);
-                /// does user own campground
-                /*
-                    Even though both req.user._id and foundCampground.author.id appear to be the same when displayed on the console, they are not. 
-                    Both are of type object, but do not equal each other.
-                    Hence we cannot compare them using === or ==. That is, the following does not work - it will never evaluate to true 
-                    if(req.user._id == foundCampground.author.id) { 
-                    We have to use the .equals() method from mongoose:
-                    if(foundCampground.author.id.equals(req.user._id)) { 
-                        make sure the document found is on the left hand side, and req.user._id is on the right
-                */
-                // console.log(req.user._id, typeof(req.user._id));  debug
-                // console.log(foundCampground.author.id, typeof(foundCampground.author.id));   debug
-
-                if(foundCampground.author.id.equals(req.user._id)) { 
-                    console.log("User is Authorized to do this action.");
-                    // pass the foundCampground to next() using req - similar to how bodyParser attaches body property to request object 
-                    // Thanks to Farid's answer: https://stackoverflow.com/a/23965964/12008034
-                    // make sure no other library uses this property - foundCampground - so there's no conflicts within the objects in req
-                    req.foundCampground = foundCampground;
-                    next();
-                } else {
-                    // res.send(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
-                    console.log("AUTHORIZATION FAILED");
-                    console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
-                    res.redirect("back");
-                }
-            }  // end else findById no error
-        }); // end of .findbyId callback
-    } else {
-        console.log("LOGIN FAILED - You need to be logged in to do that.");
-        res.redirect("back");   // take the user back to previous page they were on
-    }
-} 
 
 module.exports = router;

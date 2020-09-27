@@ -75,18 +75,6 @@ router.get("/logout", function(req, res){
     res.redirect("/campgrounds");
 });
 
-// middleware to restrict access
-function isLoggedIn(req, res, next){
-    
-    if(req.isAuthenticated()){
-        console.log("User is authenticated, and good to go");
-        return next();  
-    }
-    // if user is not authenticated, don't allow access and redirect to the login page
-    console.log("Opps. Hold up! User is not authenticated.");
-    res.redirect("/login")
-
-}
 
 // export these modules to be used by app.js
 module.exports = router;

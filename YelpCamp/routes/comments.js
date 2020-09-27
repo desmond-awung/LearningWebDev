@@ -13,10 +13,13 @@ const router = express.Router({mergeParams : true});
 const Campground = require("../models/campground");
 const Comment = require("../models/comment");
 const User = require("../models/user");
+// import middleware 
+// if we require a directory, express automatically requires the content of index.js. So we don't need to write require("../middleware/index")
+const middleware = require("../middleware");
 
 // NEW COMMENT
 // contains middleware to check for user authentication
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, (req, res) => {
     // res.send("This will be the NEW COMMENT form")
     // const campID = req.params.id; 
     // lookup campground using ID
@@ -34,7 +37,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 
 // CREATE COMMENT
 // contains middleware to check for user authentication
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
     // 1. lookup campground using ID
     Campground.findById(req.params.id, (err, foundCampground) => {
         if(err) {
@@ -81,7 +84,7 @@ router.post("/", isLoggedIn, (req, res) => {
 
 // COMMENT EDIT
 // using async / await for this one
-router.get("/:comment_id/edit", checkCommentOwnership, async(req, res) => {
+router.get("/:comment_id/edit", middleware.checkCommentOwnership, async(req, res) => {
     // res.send(`EDIT ROUTE FOR COMMENT - ${req.params.comment_id}`);
     try {
         // get the campground, then find the comment
@@ -101,7 +104,7 @@ router.get("/:comment_id/edit", checkCommentOwnership, async(req, res) => {
 });
 
 // COMMENT UPDATE
-router.put("/:comment_id", checkCommentOwnership, async(req, res) => {
+router.put("/:comment_id", middleware.checkCommentOwnership, async(req, res) => {
     const commentId = req.params.comment_id;
     const campgroundId = req.params.id;
     try {
@@ -116,7 +119,7 @@ router.put("/:comment_id", checkCommentOwnership, async(req, res) => {
 });
 
  // COMMENT DESTROY
- router.delete("/:comment_id", checkCommentOwnership, async(req, res) => {
+ router.delete("/:comment_id", middleware.checkCommentOwnership, async(req, res) => {
     const commentId = req.params.comment_id;
     const campgroundId = req.params.id;
     console.log(`Comment to be deleted: ${commentId}`);
@@ -132,44 +135,6 @@ router.put("/:comment_id", checkCommentOwnership, async(req, res) => {
     
  });
 
-// middleware to restrict access
-function isLoggedIn(req, res, next){
-    
-    if(req.isAuthenticated()){
-        console.log("User is authenticated, and good to go");
-        return next();  
-    }
-    // if user is not authenticated, don't allow access and redirect to the login page
-    console.log("Opps. Hold up! User is not authenticated.");
-    res.redirect("/login")
-
-}
-
-// middleware to check for authentication for comment edit, update and destroy routes
-// make sure user can only edit/delete comments that they created.
-async function checkCommentOwnership(req, res, next) {
-    if(req.isAuthenticated()) {
-        try {
-            let foundComment = await Comment.findById(req.params.comment_id);
-            if(foundComment.author.id.equals(req.user._id)) {
-                console.log("User is Authorized to do this action.");
-                next();
-            } else {
-                console.log("AUTHORIZATION FAILED");
-                console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own this comment. Comment is owned by ${foundComment.author.username}`);
-                res.redirect("back");
-            }
-
-        } catch (error) {
-            console.log(error);
-            res.redirect("back");   // take the user back to previous page they were on
-        }
-
-    } else {
-        console.log("LOGIN FAILED - You need to be logged in to do that.");
-        res.redirect("back");   // take the user back to previous page they were on
-    }
-}   // end of checkCommentOwnership()
 
 // export these modules to be used by app.js
 module.exports = router;
