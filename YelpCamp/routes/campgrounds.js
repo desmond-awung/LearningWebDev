@@ -222,8 +222,8 @@ function checkCampgroundOwnership (req, res, next) {
                     if(foundCampground.author.id.equals(req.user._id)) { 
                         make sure the document found is on the left hand side, and req.user._id is on the right
                 */
-                console.log(req.user._id, typeof(req.user._id));  
-                console.log(foundCampground.author.id, typeof(foundCampground.author.id)); 
+                // console.log(req.user._id, typeof(req.user._id));  debug
+                // console.log(foundCampground.author.id, typeof(foundCampground.author.id));   debug
 
                 if(foundCampground.author.id.equals(req.user._id)) { 
                     console.log("User is Authorized to do this action.");

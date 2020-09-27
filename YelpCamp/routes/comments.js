@@ -81,7 +81,7 @@ router.post("/", isLoggedIn, (req, res) => {
 
 // COMMENT EDIT
 // using async / await for this one
-router.get("/:comment_id/edit", async(req, res) => {
+router.get("/:comment_id/edit", checkCommentOwnership, async(req, res) => {
     // res.send(`EDIT ROUTE FOR COMMENT - ${req.params.comment_id}`);
     try {
         // get the campground, then find the comment
@@ -101,7 +101,7 @@ router.get("/:comment_id/edit", async(req, res) => {
 });
 
 // COMMENT UPDATE
-router.put("/:comment_id", async(req, res) => {
+router.put("/:comment_id", checkCommentOwnership, async(req, res) => {
     const commentId = req.params.comment_id;
     const campgroundId = req.params.id;
     try {
@@ -116,7 +116,7 @@ router.put("/:comment_id", async(req, res) => {
 });
 
  // COMMENT DESTROY
- router.delete("/:comment_id", async(req, res) => {
+ router.delete("/:comment_id", checkCommentOwnership, async(req, res) => {
     const commentId = req.params.comment_id;
     const campgroundId = req.params.id;
     console.log(`Comment to be deleted: ${commentId}`);
@@ -144,6 +144,32 @@ function isLoggedIn(req, res, next){
     res.redirect("/login")
 
 }
+
+// middleware to check for authentication for comment edit, update and destroy routes
+// make sure user can only edit/delete comments that they created.
+async function checkCommentOwnership(req, res, next) {
+    if(req.isAuthenticated()) {
+        try {
+            let foundComment = await Comment.findById(req.params.comment_id);
+            if(foundComment.author.id.equals(req.user._id)) {
+                console.log("User is Authorized to do this action.");
+                next();
+            } else {
+                console.log("AUTHORIZATION FAILED");
+                console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own this comment. Comment is owned by ${foundComment.author.username}`);
+                res.redirect("back");
+            }
+
+        } catch (error) {
+            console.log(error);
+            res.redirect("back");   // take the user back to previous page they were on
+        }
+
+    } else {
+        console.log("LOGIN FAILED - You need to be logged in to do that.");
+        res.redirect("back");   // take the user back to previous page they were on
+    }
+}   // end of checkCommentOwnership()
 
 // export these modules to be used by app.js
 module.exports = router;

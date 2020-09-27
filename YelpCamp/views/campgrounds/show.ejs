@@ -39,7 +39,7 @@
                         </em> 
                     </p>
 
-                    <!-- display the Edit and Delete buttons only if the logged in user owns the current campground on this show page -->
+                    <!-- display the Edit and Delete Campgrround buttons only if the logged in user owns the current campground on this show page -->
                     <!-- res.locals.currentUser in app.js gives us access to the req.user -->
                     <!-- make sure to first verify that currentUser is not undefined - in case there is no one logged in -->
                     <% if (currentUser && campground.author.id.equals(currentUser._id)) { %>
@@ -76,14 +76,22 @@
                                 <%= comment.content %>
                             </p>
 
-                            <!-- link to form template to edit the comment: /campgrounds/:id/comments/:comment_id/edit -->
-                            <a class="btn btn-xs btn-warning" 
-                            href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                            <!-- display the Edit and Delete Comment buttons only if the logged in user owns the current comment on this show page -->
+                            <!-- res.locals.currentUser in app.js gives us access to the req.user -->
+                            <!-- make sure to first verify that currentUser is not undefined - in case there is no one logged in -->
+                            <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                             
+                                <!-- link to form template to edit the comment: /campgrounds/:id/comments/:comment_id/edit -->
+                                <a class="btn btn-xs btn-warning" 
+                                href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                
+                                <!-- form to delete the form - using method override -->
+                                <form id="comment-delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                    <input class="btn btn-xs btn-danger" type="submit" value="Delete">
+                                </form>
 
-                            <!-- form to delete the form - using method override -->
-                            <form id="comment-delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                <input class="btn btn-xs btn-danger" type="submit" value="Delete">
-                            </form>
+                            <% } %>
+
                         </div>
                     </div>
                     <!-- <hr> -->
