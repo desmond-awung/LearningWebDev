@@ -113,6 +113,12 @@ router.put("/:id", checkCampgroundOwnership, (req, res) => {
     // req.body.    ==> for sanitize
     // console.log("Now in put request");    debug
     // console.log(req.body);   debug
+    /**
+     * I thought of just updating without using findById - i.e. using .updateOne() or .update(), since we already know the campground: req.foundCampground (from checkCampgroundOwnership() middleware). However, for .update(),
+     * MyModel.update( myQuery, new_value, callback);
+     *  we still need to do a query here, and there is no point in modifying the query which already works 
+     */
+
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
         if(err) {
             console.log(err);
@@ -229,7 +235,7 @@ function checkCampgroundOwnership (req, res, next) {
                 } else {
                     // res.send(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
                     console.log("AUTHORIZATION FAILED");
-                    console.log(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
+                    console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
                     res.redirect("back");
                 }
             }  // end else findById no error

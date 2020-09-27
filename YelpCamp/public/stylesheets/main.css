@@ -16,6 +16,6 @@
 }
 
 /* Delete button on the Campground Show template */
-#campround-delete-form {
+#campround-delete-form, #comment-delete-form {
     display: inline;
 }
