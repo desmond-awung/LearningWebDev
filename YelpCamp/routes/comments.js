@@ -42,6 +42,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     Campground.findById(req.params.id, (err, foundCampground) => {
         if(err) {
             console.log(err);
+            req.flash("error", "Campground not found in the database");
             res.redirect("/campgrounds");
         } else {
             console.log("Campground found: ");
@@ -71,7 +72,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
                         } else {
                             console.log("campground + comment associated & saved:");
                             // console.log(savedCampground);
-
+                            req.flash("success", `Comment Successfully Created.`)
                             // 4. redirect to campground show route  
                             res.redirect(`/campgrounds/${savedCampground._id}`);
                         }
@@ -97,6 +98,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, async(req, res
         
     } catch (error) {
         // catches error both in finding campground and in finding comment 
+        req.flash("error", `Error finding Campground/Commentin database.`)
         console.log(error);
         res.redirect("back");
     }
@@ -111,9 +113,11 @@ router.put("/:comment_id", middleware.checkCommentOwnership, async(req, res) => 
         // let updatedComment = await Comment.findByIdAndUpdate(commentId, req.body.comment)
         await Comment.findByIdAndUpdate(commentId, req.body.comment);
         console.log(`Comment was updated: ${commentId}`);
-        res.redirect(`/campgrounds/${campgroundId}`);       // redirect to campgrounds show page
+        req.flash("success", "Comment was successfully updated");
+        res.redirect(`/campgrounds/${campgroundId}`);       // redirect to this campground's show page
     } catch (error) {
         console.log(error);
+        req.flash("error", `Error updating this comment`);
         res.redirect("back");
     }
 });
@@ -127,9 +131,11 @@ router.put("/:comment_id", middleware.checkCommentOwnership, async(req, res) => 
     try {
         await Comment.findByIdAndDelete(commentId);
         console.log(`Comment deleted: ${commentId}`);
+        req.flash("success", "Comment deleted successfully")
         res.redirect(`/campgrounds/${campgroundId}`);       // redirect to campgrounds show page
     } catch (error) {
         console.log(error);
+        req.flash("error", `Error deleting this comment`);
         res.redirect("back");
     }
     

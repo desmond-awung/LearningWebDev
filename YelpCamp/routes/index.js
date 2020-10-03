@@ -38,11 +38,13 @@ router.post("/register", function(req, res){
                     function(err, user){
                         if(err) {
                             console.log(err);
+                            req.flash("error", `${err.name}: ${err.message}`);
                             return res.redirect("/register");   // short-circuits the code below if error occurs
                         }
                         // when the user successfully signs up, log the user in (.authenticate) and redirect to the campgrounds page
                         passport.authenticate("local")(req, res, function(){
                             console.log(`registration successful: ${user.username} logged in.`);
+                            req.flash("success", `Welcome to Yelpcamp, ${user.username}. Registration successful.`);
                             res.redirect("/campgrounds");
                         });                        
                     });
@@ -72,6 +74,7 @@ router.post(   "/login",
 router.get("/logout", function(req, res){
     req.logout();
     console.log(`user logged out successfully.`);
+    req.flash("success", "Logged you out!");
     res.redirect("/campgrounds");
 });
 

@@ -1,7 +1,7 @@
 {
   "name": "yelpcamp",
-  "version": "0.10.0",
-  "description": "YelpCamp v10. Web app that displays different camps, just like Yelp does. v10 adds CRUD ability and authorizations for campgrounds",
+  "version": "0.11.0",
+  "description": "YelpCamp v11. Web app that displays different camps, just like Yelp does. v11 uses connect-flash to add functionality for flash messages: messages that last just one request/response and don't persist.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

@@ -44,4 +44,28 @@
             </div>
             
         </nav>
+
+        <!-- Alert Flash messages  -->
+        <div class="container">
+            <!-- error and success are of type array object. They always exist as long as we defined them in res.locals... they are never undefined. So we can't just have if(error){...} cuz even an empty array evaluates to True. We actually need both conditions in the if statement 
+                - first condition of the if statement checks to make sure error and success are defined.
+                - second condition: we actually have an error or sucess msg to display only when this array has something in it: i.e. length > 0. This array looks like this: [ 'Please Login First' ] -->
+                
+            <% if (error && error.length > 0) { %>
+                <% console.log(error, typeof(error)) %>
+                <!-- error flash messages -->
+                <div class="alert alert-danger" role="alert">
+                    <%= error %> 
+                </div>
+
+            <% } else if (success && success.length > 0) { %>
+                <% console.log(success, typeof(success)) %>
+                <!-- success flash messages -->
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %>
+
+
+        </div>
         

@@ -14,6 +14,7 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
         Campground.findById(req.params.id, (err, foundCampground) => {
             if(err) {
                 console.log(err);
+                req.flash("error", "Campground not found in the database");
                 res.redirect("back");
             } else {
                 // console.log(foundCampground);
@@ -38,15 +39,19 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
                     req.foundCampground = foundCampground;
                     next();
                 } else {
-                    // res.send(`You - ${req.user.username} -  cannot edit since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
-                    console.log("AUTHORIZATION FAILED");
+                    console.log("AUTHORIZATION ERROR");
                     console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own the campground. Campground is owned by ${foundCampground.author.username}`);
+                    req.flash("error", "Authorization Error. You don't have permission to do that.");
                     res.redirect("back");
                 }
             }  // end else findById no error
         }); // end of .findbyId callback
     } else {
-        console.log("LOGIN FAILED - You need to be logged in to do that.");
+        // user is not logged in
+        // if user is not authenticated, don't allow access and redirect to the login page
+        console.log("LOGIN FIRST - You need to be logged in to perform that action.");
+        // do it before you redirect - it shows up on the page you redirect to
+        req.flash("error", "You need to be logged in to do that.");
         res.redirect("back");   // take the user back to previous page they were on
     }
 }   // end of checkCampgroundOwnership
@@ -61,18 +66,25 @@ middlewareObj.checkCommentOwnership = async function(req, res, next) {
                 console.log("User is Authorized to do this action.");
                 next();
             } else {
-                console.log("AUTHORIZATION FAILED");
+                console.log("AUTHORIZATION ERROR");
                 console.log(`You - ${req.user.username} -  do not have permissions to edit/delete since you don't own this comment. Comment is owned by ${foundComment.author.username}`);
+                req.flash("error", "Authorization Error. You don't have permission to do that.");
                 res.redirect("back");
             }
 
         } catch (error) {
+            // error from promise reject - findById error - DB error. We'll hardly ever see this if server is up and running
+            req.flash("error", "Comment not found in the database");
             console.log(error);
             res.redirect("back");   // take the user back to previous page they were on
         }
 
     } else {
-        console.log("LOGIN FAILED - You need to be logged in to do that.");
+        // user is not logged in
+        // if user is not authenticated, don't allow access and redirect to the login page
+        console.log("LOGIN FIRST - You need to be logged in to perform that action.");
+        // do it before you redirect - it shows up on the page you redirect to
+        req.flash("error", "You need to be logged in to do that.");
         res.redirect("back");   // take the user back to previous page they were on
     }
 }   // end of checkCommentOwnership
@@ -85,8 +97,10 @@ middlewareObj.isLoggedIn = function(req, res, next) {
         return next();  
     }
     // if user is not authenticated, don't allow access and redirect to the login page
-    console.log("LOGIN FAILED - You need to be logged in to do that.");
-    res.redirect("/login")
+    console.log("LOGIN FIRST - You need to be logged in to perform that action.");
+    // do it before you redirect - it shows up on the page you redirect to
+    req.flash("error", "You need to be logged in to do that.");
+    res.redirect("/login");
 
 }  // end of isLoggedIn
 

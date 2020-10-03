@@ -9,6 +9,7 @@
 const   express     = require("express"),
         app         = express(),
         bodyParser  = require("body-parser"),
+        flash       = require("connect-flash"),
         mongoose    = require("mongoose"),
         passport    = require("passport"),
         LocalStrategy = require("passport-local"),
@@ -50,6 +51,10 @@ app.use(bodyParser.urlencoded({extended : true}));
 // method override : for PUT and DELETE HTTP requests
 app.use(methodOverride("_method"));
 
+// init connect-flash for flash messages - make sure this comes BEFORE the passport configuration
+// if not we get the error: req.flash is not a function
+app.use(flash());
+
 // init node server
 const port = 3000;
 
@@ -70,6 +75,9 @@ passport.deserializeUser(User.deserializeUser());
 // middleware called in every single route, to pass the user info to all templates
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    // if there is anything in req.flash, we will have access to it in any template under success_msg or error_msg 
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

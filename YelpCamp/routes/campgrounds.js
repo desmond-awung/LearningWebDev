@@ -66,10 +66,13 @@ router.post("/", middleware.isLoggedIn, (req, res) => {                // REST f
     Campground.create(newCampground, (err, newlyCreated) => {
         if(err) {
             console.log(err);
+            req.flash("error", `Error Creating Campground: ${newCampground.name}`)
+            res.redirect("/campgrounds");  
         } else {
             console.log(`New Campground created: ${newlyCreated.name}`);
             // console.log(newlyCreated);
             // redirect back to /index page
+            req.flash("success", `Campground Successfully Created: ${newlyCreated.name}`)
             res.redirect("/campgrounds");  
         }
     });  // end of Campground.create 
@@ -126,10 +129,12 @@ router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
         if(err) {
             console.log(err);
+            req.flash("error", `Error updating this campground`)
             res.redirect("/campgrounds");   // if this campground's id is not found, redirect to index page
         } else {
             console.log(`Campground was updated: ${updatedCampground.name}`);
             // console.log(updatedCampground);
+            req.flash("sucess", `Campground was successfully updated: ${updatedCampground.name}`);
             res.redirect(`/campgrounds/${req.params.id}`);     // redirect to this campground's show page
         }
     });
@@ -144,6 +149,7 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
     Campground.findById(req.params.id, (err, campgroundToDelete) => {
         if(err) {
             console.log(err);
+            req.flash("error", `Error deleting this campground`)
             res.redirect("/campgrounds");   // redirect to the index page
         } else {
             // console.log(foundCampground);
@@ -160,7 +166,7 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
                     // delete all comments associated with this campground from DB
                     Comment.deleteMany({_id : {$in : campgroundToDelete.comments}}, (err, result_comment) => {
                         if(err) {
-                            console.log("campground could not be deleted");
+                            console.log("This Campground's comments could not be deleted");
                             console.log(err);
                             res.redirect("/campgrounds");   // redirect to the index page
                         } else {
@@ -168,10 +174,11 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
                             console.log(result_comment);
                         }
                     });
-                    // code reaches here if 
+                    // code reaches here if successfully deleted
                     console.log(`Campground successfully deleted: ${campToDel_name}, with all associated comments.`);            
                     console.log("Campgrrounds deletions info:");
                     console.log(result_camp);    // displays object with details on what was deleted
+                    req.flash("success", `Campground successfully deleted: ${campToDel_name}, with all associated comments.`)
                     res.redirect("/campgrounds");   // redirect to the index page
                 }
             });
