@@ -1,7 +1,7 @@
 {
   "name": "yelpcamp",
-  "version": "0.11.0",
-  "description": "YelpCamp v11. Web app that displays different camps, just like Yelp does. v11 uses connect-flash to add functionality for flash messages: messages that last just one request/response and don't persist.",
+  "version": "0.12.0",
+  "description": "YelpCamp v12. Web app that displays different camps, just like Yelp does. v12 adds UI improvements.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
