@@ -5,6 +5,7 @@ const campdgroundSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String,
+    price : String,
     // add association to User model - reference a particular user's object ID
     author : {
         id : {

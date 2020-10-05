@@ -16,6 +16,7 @@ const router = express.Router();
 // import middleware 
 // if we require a directory, express automatically requires the content of index.js. So we don't need to write require("../middleware/index")
 const middleware = require("../middleware");
+const campground = require("../models/campground");
 
 
 // import index.js
@@ -46,21 +47,27 @@ router.get("/", (req, res) => {                 // REST format
 // CREATE
 // contains middleware to check for user authentication
 router.post("/", middleware.isLoggedIn, (req, res) => {                // REST format
-    // get data from form and add to campgrounds[] array
-    const campName = req.body.camp_name;
-    const campImgUrl = req.body.image_url;
-    const campDescription = req.body.description;
-    // console.log(req.user);
+    // get user data first
     const author = {
         id : req.user._id,
         username : req.user.username
     }
-    const newCampground = {
-        name : campName,
-        image : campImgUrl,
-        description : campDescription,
-        author : author
-    };
+    // then get campgrounds data from form
+    let newCampground = req.body.campground;
+    newCampground.author = author;
+    console.log(newCampground);
+    // const campName = req.body.camp_name;
+    // const campImgUrl = req.body.image_url;
+    // const campDescription = req.body.description;
+    // console.log(req.user);
+    
+    // const newCampground = {
+    //     name : campName,
+    //     image : campImgUrl,
+    //     price : price,
+    //     description : campDescription,
+    //     author : author
+    // };
     // console.log(newCampground);
     // create a new campground document and save to campgrounds collection in DB
     Campground.create(newCampground, (err, newlyCreated) => {

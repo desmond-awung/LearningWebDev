@@ -1,7 +1,7 @@
 {
   "name": "yelpcamp",
-  "version": "0.12.0",
-  "description": "YelpCamp v12. Web app that displays different camps, just like Yelp does. v12 adds UI improvements.",
+  "version": "0.13.0",
+  "description": "YelpCamp v13. Web app that displays different camps, just like Yelp does. v13 adds dynamic pricing",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

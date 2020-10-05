@@ -12,16 +12,27 @@
             <!-- action: points to "/campgrounds", REST format -->
             <form action = "/campgrounds/<%= campground._id %>?_method=PUT" method ="POST">
 
+                <!-- campground name -->
                 <div class="form-group">    <!-- adds margin below the input elt-->
                     <input class="form-control" type="text" name ="campground[name]" value="<%= campground.name %>"> 
                 </div>
+
+                <!-- campground image url -->
                 <div class="form-group">
                     <input class="form-control" type="text" name ="campground[image]" value="<%= campground.image %>"> 
                 </div>
+
+                <!-- campground price: min: $0.01, steps in pennies/cents -->
+                <div class="form-group">
+                    <input class="form-control" type="number" name="campground[price]" min="0.01" step="0.01" value="<%= campground.price%>">
+                </div>
+
+                <!-- campground description -->
                 <div class="form-group">
                     <!-- we can't use value="" for textarea -->
                     <textarea class="form-control" name="campground[description]" cols="30" rows="10"><%= campground.description %></textarea>
                 </div>
+
                 <div class="form-group">
                     <!-- btn-block ==> makes btn into block element -->
                     <button class="btn btn-lg btn-primary btn-block"> Submit </button>

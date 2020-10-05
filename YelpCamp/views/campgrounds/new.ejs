@@ -11,16 +11,26 @@
             <!-- action: points to "/campgrounds", REST format -->
             <form action = "/campgrounds" method ="POST">
 
+                <!-- campground name -->
                 <div class="form-group">    <!-- adds margin below the input elt-->
-                    <input class="form-control" type="text" placeholder="camp name" name ="camp_name"> 
+                    <input class="form-control" type="text" placeholder="campground name" name ="campground[name]"> 
                 </div>
+
+                <!-- campground image url -->
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="image url" name ="image_url"> 
+                    <input class="form-control" type="text" placeholder="image url" name ="campground[image]"> 
                 </div>
+
+                <!-- campground price: min: $0.01, steps in pennies/cents -->
+                <div class="form-group">
+                    <input class="form-control" type="number" placeholder="price" name="campground[price]" min="0.01" step="0.01">
+                </div>
+
+                <!-- campground description -->
                 <div class="form-group">
                     <!-- <input class="form-control" type="text" placeholder="description" name ="description">  -->
                     <!-- for placeholder to appear, make sure there is NO whitespace between the <textarea></textarea> tags -->
-                    <textarea class="form-control" placeholder="camground description" name="description" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" placeholder="camground description" name="campground[description]" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
                     <!-- btn-block ==> makes btn into block element -->
